@@ -6,8 +6,6 @@ on:
     branches: [main]
   # Trigger the workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
-  repository_dispatch:
-    types: [cms-update]
 
 # Allow this job to clone the repo and create a page deployment
 permissions:
@@ -18,11 +16,16 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: build
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
       - name: Install, build, and upload your site
         uses: withastro/action@v3
+        env:
+          BUILDER_API_PUBLIC_KEY: ${{ vars.BUILDER_API_PUBLIC_KEY }}
+          BUILDER_BLOGPOST_MODEL: ${{ vars.BUILDER_BLOGPOST_MODEL }}
 
   deploy:
     needs: build
