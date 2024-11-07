@@ -1,0 +1,167 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import "@fontsource/montserrat";
+---
+
+<Layout title="Cuebitt.RIP">
+  <Fragment slot="head">
+    <script
+      src="https://cdn.jsdelivr.net/gh/cuebitt/webcomponents@v1.3.1/components/lanyard-status/lanyard-status.min.js"
+    ></script>
+  </Fragment>
+
+  <main
+    class="flex h-full flex-col justify-center bg-wavesLight bg-cover bg-center bg-no-repeat dark:bg-wavesDark"
+  >
+    <div class="container mx-auto">
+      <div
+        class="grid-cols-2 overflow-hidden rounded-2xl border-8 border-violet-200 bg-violet-50 md:grid dark:border-indigo-500 dark:bg-violet-800"
+      >
+        <div
+          class="relative border-r-2 border-violet-200 bg-topographicLight dark:border-indigo-500 dark:bg-topographicDark"
+        >
+          <div class="flex w-full items-center justify-center p-8">
+            <span
+              class="h-full w-1/2 overflow-hidden rounded-[50%] outline outline-2 outline-offset-4 outline-yellow-300 transition-border-radius duration-300 ease-in-out hover:rounded-lg"
+            >
+              <Image
+                src="https://lh3.googleusercontent.com/d/1AEK8eeReXyjul27eKhplG6aneMTuf4cL"
+                alt="Profile photo. Anthro cow with white fur and lavender spots. Halo above head. Bust shot."
+                width={1600}
+                height={1533}
+              />
+            </span>
+          </div>
+
+          <div>
+            <div
+              class="z-10 w-fit translate-y-1 rounded-tr-xl border-4 border-b-0 border-slate-800 bg-violet-300 p-2 font-montserrat dark:border-slate-100 dark:bg-violet-900"
+            >
+              <h1 class="text-4xl font-bold text-zinc-800 dark:text-zinc-100">
+                Cuebitt
+              </h1>
+            </div>
+
+            <div
+              class="flex flex-col gap-5 rounded-bl-lg border-4 border-slate-800 bg-violet-300 px-5 pb-8 pt-5 text-xl font-normal text-zinc-700 dark:border-slate-100 dark:bg-violet-900 dark:text-zinc-200"
+            >
+              <p class="mx-auto w-fit italic">
+                ✨ 23yrs, he/him/his, gay, furry 😇🐮, vegan 🌱 ✨
+              </p>
+              <p>
+                I'm Cuebitt, the one and only. I'm a<span
+                  class="bg-slate-500 text-transparent hover:bg-transparent hover:text-inherit"
+                  >n unemployed</span
+                >
+                software developer and a furry. I love to read books and I have an
+                unhealthy obsession with fountain pens.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="flex w-full flex-col items-center justify-center gap-6">
+          <h1 class="text-5xl font-bold text-zinc-800 dark:text-zinc-100">
+            Links
+          </h1>
+          <div
+            class="flex w-3/4 flex-col gap-4 font-montserrat text-lg text-zinc-100 lg:text-2xl dark:text-zinc-100"
+            x-data
+          >
+            <dialog
+              x-ref="discordModal"
+              class="w-1/3 rounded-xl bg-violet-200 font-sans text-lg text-slate-800 dark:bg-violet-700 dark:text-slate-200"
+            >
+              <header
+                class="flex w-full flex-row justify-between bg-slate-200 p-2 dark:bg-slate-800"
+              >
+                <h1 class="text-4xl font-bold">Discord</h1>
+                <button @click="$refs.discordModal.close()" class="w-10">
+                  <Icon name="fa6-solid:xmark" />
+                </button>
+              </header>
+              <div class="container mx-auto flex flex-col gap-3 p-4">
+                <div class="mx-auto w-fit overflow-hidden rounded-lg">
+                  <lanyard-status></lanyard-status>
+                </div>
+                <p class="text-base">You can find me on Discord as:</p>
+                <pre
+                  class="rounded-md bg-slate-700 p-3 text-slate-300"><code>cuebitt</code></pre>
+                <p>
+                  (formerly known as <span class="font-mono">cuebitt#2209</span
+                  >)
+                </p>
+              </div>
+            </dialog>
+
+            <dialog
+              x-ref="nsoModal"
+              class="w-1/3 rounded-xl bg-violet-200 font-sans text-lg text-slate-800 dark:bg-violet-700 dark:text-slate-200"
+            >
+              <header
+                class="m-0 flex w-full flex-row justify-between bg-slate-200 p-2 dark:bg-slate-800"
+              >
+                <h1 class="text-4xl font-bold">Nintendo Switch Online</h1>
+                <button @click="$refs.nsoModal.close()" class="w-10">
+                  <Icon name="fa6-solid:xmark" />
+                </button>
+              </header>
+
+              <div class="container mx-auto flex flex-col gap-3 p-4">
+                <p>My Nintendo Switch Online friend code is:</p>
+                <pre
+                  class="rounded-md bg-slate-700 p-3 text-slate-300"><code>SW-4871-6119-5311</code></pre>
+                <a
+                  class="text-blue-400 underline"
+                  href="https://lounge.nintendo.com/friendcode/4871-6119-5311/DVd2pYxgyV"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  >Click here to open in the Nintendo Switch Online app 🔗</a
+                >
+                <p>I mainly play Splatoon 3 🦑🐙.</p>
+              </div>
+            </dialog>
+
+            <a
+              href="https://bsky.app/profile/cuebitt.rip"
+              rel="noopener"
+              target="_blank"
+              class="flex w-full flex-row justify-between rounded-full bg-violet-400 px-6 py-4 shadow-md transition hover:scale-110 hover:bg-violet-500 dark:bg-violet-900 dark:hover:bg-violet-700"
+              >Bluesky <Icon name="fa6-brands:bluesky" /></a
+            >
+            <a
+              rel="noopener"
+              target="_blank"
+              href="https://t.me/cuebitt"
+              class="flex w-full flex-row justify-between rounded-full bg-violet-400 px-6 py-4 shadow-md transition hover:scale-110 hover:bg-violet-500 dark:bg-violet-900 dark:hover:bg-violet-700"
+              >Telegram <Icon name="fa6-brands:telegram" />
+            </a>
+            <button
+              class="flex w-full flex-row justify-between rounded-full bg-violet-400 px-6 py-4 shadow-md transition hover:scale-110 hover:bg-violet-500 dark:bg-violet-900 dark:hover:bg-violet-700"
+              @click="$refs.discordModal.showModal()"
+            >
+              Discord <Icon name="fa6-brands:discord" />
+            </button>
+            <button
+              class="flex w-full flex-row justify-between whitespace-nowrap rounded-full bg-violet-400 px-6 py-4 shadow-md transition hover:scale-110 hover:bg-violet-500 dark:bg-violet-900 dark:hover:bg-violet-700"
+              @click="$refs.nsoModal.showModal()"
+            >
+              Nintendo Switch <Icon name="mdi:nintendo-switch" />
+            </button>
+            <a
+              href="/art"
+              class="flex w-full flex-row justify-between rounded-full bg-violet-400 px-6 py-4 shadow-md transition hover:scale-110 hover:bg-violet-500 dark:bg-violet-900 dark:hover:bg-violet-700"
+              >Fursona Wiki <Icon name="lucide:palette" />
+            </a>
+            <a
+              href="/"
+              class="flex w-full flex-row justify-between rounded-full bg-violet-400 px-6 py-4 shadow-md transition hover:scale-110 hover:bg-violet-500 dark:bg-violet-900 dark:hover:bg-violet-700"
+              >Blog <Icon name="lucide:pen-tool" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
