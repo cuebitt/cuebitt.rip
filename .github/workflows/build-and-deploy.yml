@@ -6,6 +6,8 @@ on:
     branches: [main]
   # Trigger the workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
+  repository_dispatch:
+    types: [cms-update]
 
 # Allow this job to clone the repo and create a page deployment
 permissions:
