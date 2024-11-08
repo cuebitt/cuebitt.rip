@@ -23,9 +23,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Install, build, and upload your site
         uses: withastro/action@v3
-        env:
-          BUILDER_API_PUBLIC_KEY: ${{ vars.BUILDER_API_PUBLIC_KEY }}
-          BUILDER_BLOGPOST_MODEL: ${{ vars.BUILDER_BLOGPOST_MODEL }}
 
   deploy:
     needs: build
