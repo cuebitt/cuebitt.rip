@@ -1,0 +1,39 @@
+---
+interface Props {
+  colors: {
+    description: string;
+    hex: string;
+  }[];
+}
+
+const { colors } = Astro.props;
+---
+
+<table>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Swatch</th>
+        <th scope="col">Description</th>
+        <th scope="col">Hex</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {
+        colors.map((color) => (
+          <tr>
+            <td
+              style={`background-color: ${color.hex};`}
+              onclick={`navigator.clipboard.writeText('${color.hex}'); alert('copied!');`}
+            />
+            <td>{color.description}</td>
+            <td>
+              <span class="font-mono">{color.hex}</span>
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</table>

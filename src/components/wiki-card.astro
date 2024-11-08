@@ -1,0 +1,46 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  topic: string;
+  imageSrc: string;
+  imageAlt: string;
+  details: {
+    label: string;
+    value: string;
+  }[];
+}
+
+const { topic, imageSrc, imageAlt, details } = Astro.props;
+---
+
+<article class="flex w-fit flex-col gap-4 rounded-lg border-2 p-4 shadow-lg">
+  <header>
+    <h1 class="text-4xl font-bold">{topic}</h1>
+  </header>
+
+  <hr />
+
+  <Image
+    src={imageSrc}
+    alt={imageAlt}
+    width={400}
+    height={400}
+    class="rounded-xl transition-border-radius hover:rounded-none"
+  />
+
+  <hr />
+
+  <table>
+    <tbody>
+      {
+        details.map((detail) => (
+          <tr>
+            <th scope="row">{detail.label}</th>
+            <td>{detail.value}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</article>
