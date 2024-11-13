@@ -1,0 +1,140 @@
+---
+// Loosely based on https://kld.dev/toc-animation/
+
+import TocHeading from "./toc-heading.astro";
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+const { headings } = Astro.props;
+
+interface TreeItem {
+  depth: number;
+}
+function buildTree(flatArray: TreeItem[]) {
+  const root: { children: any[] } = { children: [] };
+  const stack = [root];
+
+  flatArray.forEach((item) => {
+    // Ensure the stack matches the item's depth level
+    while (stack.length > item.depth) {
+      stack.pop();
+    }
+
+    // Attach item as a child of the current parent in the stack
+    const parent = stack[stack.length - 1];
+    const newNode = { ...item, children: [] };
+    parent.children.push(newNode);
+
+    // Add the new node to the stack
+    stack.push(newNode);
+  });
+
+  return root.children;
+}
+
+const headingsTree = buildTree(headings);
+---
+
+<nav class="relative h-fit" data-toc x-init="update = () => updatePath();">
+  <ul class="grid gap-3 pl-2" data-toc-list-top>
+    {headingsTree.map((node) => <TocHeading heading={node} />)}
+  </ul>
+
+  <svg
+    class="pointer-events-none absolute inset-0 size-full"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      style="transition: stroke-dasharray 0.3s ease;"
+      data-toc-marker
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-dasharray="1 0 0 1000"
+      stroke-dashoffset="1"
+      stroke-linecap="round"
+      stroke-linejoin="round"></path>
+  </svg>
+</nav>
+
+<script is:inline>
+  const linkStarts = new WeakMap();
+  const linkEnds = new WeakMap();
+
+  function drawPath() {
+    const path = document.querySelector("[data-toc-marker]");
+    const links = Array.from(document.querySelectorAll("[data-toc] a"));
+    const listTop = document.querySelector("[data-toc] [data-toc-list-top]");
+    if (!links.length) return;
+
+    const lPad =
+      parseInt(window.getComputedStyle(listTop).paddingLeft) -
+      parseInt(path.getAttribute("stroke-width"));
+
+    let pathData = [];
+    let left = 0;
+    links.forEach((link, i) => {
+      const x = link.offsetLeft - lPad;
+      const y = link.offsetTop;
+      const height = link.offsetHeight;
+      if (i === 0) {
+        // The top of the first link starts at 0px along the path.
+        linkStarts.set(link, 0);
+        pathData.push("M", x, y, "L", x, y + height);
+      } else {
+        if (left !== x) pathData.push("L", left, y);
+        pathData.push("L", x, y);
+
+        // Apply the current path data to the path element
+        path.setAttribute("d", pathData.join(" "));
+
+        // Get the total length of the path now that it extends
+        // to the top of this link, and store it in our linkStarts
+        // WeakMap.
+        linkStarts.set(link, path.getTotalLength());
+        pathData.push("L", x, y + height);
+      }
+      left = x;
+
+      // Apply the current path data to the path element again
+      path.setAttribute("d", pathData.join(" "));
+
+      // Get the length of the path that now extends to the
+      // bottom of this link, and store it in our linkEnds WeakMap.
+      linkEnds.set(link, path.getTotalLength());
+    });
+    // We no longer need to call `path.setAttribute('d')` at the end
+    // since we are doing it in the loop.
+  }
+
+  function updatePath() {
+    const path = document.querySelector("[data-toc-marker]");
+    const pathLength = path.getTotalLength();
+    const activeLinks = document.querySelectorAll("[data-toc] a.s--visible"); // .active
+    let linkStart = pathLength;
+    let linkEnd = 0;
+    activeLinks.forEach((link) => {
+      // Set linkStart to the top of the earliest active link
+      linkStart = Math.min(linkStart, linkStarts.get(link));
+      // Set linkEnd to the bottom of the furthest active link
+      linkEnd = Math.max(linkEnd, linkEnds.get(link));
+    });
+    // If there are no active links, hide the path
+    path.style.display = activeLinks.length ? "inline" : "none";
+    // FINALLY, do the thing!
+    path.setAttribute(
+      "stroke-dasharray",
+      `1 ${linkStart} ${linkEnd - linkStart} ${pathLength}`,
+    );
+  }
+
+  drawPath();
+  updatePath();
+</script>
