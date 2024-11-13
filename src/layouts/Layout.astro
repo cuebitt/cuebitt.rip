@@ -30,5 +30,14 @@ const openGraphImageUrl = getImagePath({ url, site });
   </head>
   <body class="h-screen">
     <slot />
+
+    <div class="hidden" aria-hidden="true">
+      <ul>
+        <li>
+          <a href="https://github.com/cuebitt" rel="me">GitHub</a>
+        </li>
+      </ul>
+      <link rel="authorization_endpoint" href="https://indieauth.com/auth" />
+    </div>
   </body>
 </html>
