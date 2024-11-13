@@ -9,26 +9,26 @@ interface Props {
 const { colors } = Astro.props;
 ---
 
-<table>
-  <table>
+<div class="not-prose overflow-hidden rounded-md shadow-lg">
+  <table class="w-full">
     <thead>
       <tr>
-        <th scope="col">Swatch</th>
-        <th scope="col">Description</th>
-        <th scope="col">Hex</th>
+        <th scope="col" class="p-2">Swatch</th>
+        <th scope="col" class="p-2">Description</th>
+        <th scope="col" class="p-2">Hex</th>
       </tr>
     </thead>
 
     <tbody>
       {
         colors.map((color) => (
-          <tr>
+          <tr class="even:bg-slate-50">
             <td
               style={`background-color: ${color.hex};`}
               onclick={`navigator.clipboard.writeText('${color.hex}'); alert('copied!');`}
             />
-            <td>{color.description}</td>
-            <td>
+            <td class="px-3 py-2">{color.description}</td>
+            <td class="px-3 py-2">
               <span class="font-mono">{color.hex}</span>
             </td>
           </tr>
@@ -36,4 +36,4 @@ const { colors } = Astro.props;
       }
     </tbody>
   </table>
-</table>
+</div>
