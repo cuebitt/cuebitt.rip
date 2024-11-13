@@ -1,0 +1,32 @@
+---
+interface TocHeadingProps {
+  heading: Heading;
+}
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+const { heading } = Astro.props;
+---
+
+<li class="grid gap-3">
+  <a
+    href={"#" + heading.slug}
+    :class=`headings.has('${heading.slug}') && 's--visible translate-x-2 font-semibold'`
+    class="transition-transform duration-300 ease-in-out"
+  >
+    {heading.text}
+  </a>
+  {
+    heading.children.length > 0 && (
+      <ul class="grid gap-3 pl-8">
+        {heading.children.map((child: Heading) => (
+          <Astro.self heading={child} />
+        ))}
+      </ul>
+    )
+  }
+</li>
