@@ -1,7 +1,9 @@
 ---
+import { Icon } from "astro-icon/components";
 import Layout from "../../layouts/Layout.astro";
 import WikiCard from "../../components/wiki-card.astro";
-import { frontmatter, Content } from "./art.mdx";
+import Toc from "../../components/toc.astro";
+import { frontmatter, Content, getHeadings } from "./art.mdx";
 
 interface Props {
   title: string;
@@ -13,6 +15,12 @@ interface Props {
     label: string;
     value: string;
   }[];
+}
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
 }
 
 const { title, subtitle, topic, imageSrc, imageAlt, details } = frontmatter;
@@ -28,6 +36,8 @@ const _details = Object.entries(details).map(([label, value]) => ({
 })) as Detail[];
 
 const openTempModal = import.meta.env.PROD;
+
+const headings = getHeadings();
 ---
 
 <Layout title={`${topic} - ${title}`}>
@@ -40,8 +50,11 @@ const openTempModal = import.meta.env.PROD;
   <div
     class="container mx-auto grid gap-2"
     style="grid-template-columns: 1fr 3fr 1fr;"
+    x-data="tocIntersect"
   >
-    <aside class="sticky top-5 mt-10 h-fit"></aside>
+    <aside class="sticky top-32 mt-10 h-fit">
+      <Toc headings={headings} />
+    </aside>
     <article class="prose">
       <Content />
     </article>
@@ -80,4 +93,22 @@ const openTempModal = import.meta.env.PROD;
       </p>
     </article>
   </dialog>
+
+  <hr class="container mx-auto" />
+  <footer class="container mx-auto p-4">
+    <nav class="mx-auto w-fit">
+      <ul>
+        <li class="flex flex-row space-x-2 align-middle">
+          <Icon name="fa6-brands:github" class="my-auto" />
+          <a
+            href="http://github.com/cuebitt/cuebitt.rip"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Source Code
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </footer>
 </Layout>
