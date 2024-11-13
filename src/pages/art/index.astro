@@ -3,7 +3,9 @@ import { Icon } from "astro-icon/components";
 import Layout from "../../layouts/Layout.astro";
 import WikiCard from "../../components/wiki-card.astro";
 import Toc from "../../components/toc.astro";
-import { frontmatter, Content, getHeadings } from "./art.mdx";
+import { frontmatter, Content, getHeadings } from "./_art.mdx";
+import ballImage from "./ball_anim.webp";
+import { Image } from "astro:assets";
 
 interface Props {
   title: string;
@@ -42,23 +44,34 @@ const headings = getHeadings();
 
 <Layout title={`${topic} - ${title}`}>
   <header class="container mx-auto py-5">
-    <hgroup>
-      <h1 class="text-4xl font-bold">{title}</h1>
-      <h2 class="text-3xl">{subtitle}</h2>
-    </hgroup>
+    <div class="flex flex-row gap-4">
+      <Image src={ballImage} alt="" class="my-auto size-16" />
+      <hgroup>
+        <h1 class="text-4xl font-bold">{title}</h1>
+        <h2 class="text-3xl">{subtitle}</h2>
+      </hgroup>
+    </div>
   </header>
   <div
-    class="container mx-auto grid gap-2"
+    class="container mx-auto flex flex-col gap-8 md:grid"
     style="grid-template-columns: 1fr 3fr 1fr;"
     x-data="tocIntersect"
   >
-    <aside class="sticky top-32 mt-10 h-fit">
+    <aside class="top-32 mt-10 hidden h-fit md:sticky md:block">
+      <h1 class="text-xl font-semibold">Contents</h1>
+      <hr class="my-2" />
       <Toc headings={headings} />
     </aside>
-    <article class="prose">
-      <Content />
-    </article>
-    <aside class="sticky top-32 mt-10 h-fit">
+    <main class="w-full">
+      <article
+        class="prose prose-lg m-0 w-full max-w-full prose-headings:underline prose-h1:text-4xl"
+      >
+        <Content />
+      </article>
+    </main>
+    <aside
+      class="top-32 mt-10 h-fit sm:order-first sm:mx-auto md:sticky md:order-none"
+    >
       <WikiCard
         topic={topic}
         imageSrc={imageSrc}
@@ -99,11 +112,16 @@ const headings = getHeadings();
     <nav class="mx-auto w-fit">
       <ul>
         <li class="flex flex-row space-x-2 align-middle">
+          <Icon name="fa6-solid:house" class="my-auto" />
+          <a href="/" class="transition hover:scale-110"> Home </a>
+        </li>
+        <li class="flex flex-row space-x-2 align-middle">
           <Icon name="fa6-brands:github" class="my-auto" />
           <a
             href="http://github.com/cuebitt/cuebitt.rip"
             target="_blank"
             rel="noopener noreferrer"
+            class="transition hover:scale-110"
           >
             Source Code
           </a>

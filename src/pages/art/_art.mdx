@@ -1,0 +1,107 @@
+---
+title: Halopedia
+subtitle: The Cow Encyclopedia
+topic: Indigo
+imageSrc: "https://lh3.googleusercontent.com/d/181z_OHvdrEvtLB6TjASqm4mrQWvEuh3S"
+imageAlt: "Anthro cattle with white fur and lavender spots sticking his tongue out. Halo above head. Bust shot"
+details:
+  Name: Indigo
+  Pronouns: he/him/his
+  Species: Holy Cow
+colors:
+  - description: Fur (Main)
+    hex: "#ffffeb"
+  - description: "Halo, Eyes"
+    hex: "#ffcf34"
+  - description: Nose
+    hex: "#ffacd1"
+  - description: Spots
+    hex: "#e0ccfa"
+  - description: Eyebrows
+    hex: "#bc8dfa"
+  - description: Hair (Stripe)
+    hex: "#a57cb0"
+  - description: Hooves
+    hex: "#55106d"
+  - description: Watch (Band)
+    hex: "#6d88b1"
+  - description: Watch (Frame)
+    hex: "#185991"
+---
+
+import { Image } from "astro:assets";
+import Swatches from "../../components/swatches.astro";
+import Carousel from "../../components/carousel.astro";
+import json from "./_gallery.json";
+
+# Background
+
+Indigo was hit and killed by the [Isekai Truck](https://en.wikipedia.org/wiki/Truck-kun) one day and got flewed out into the furry afterlife. Being dead doesn't seem to bother him, though.
+
+# Ref Sheet
+
+<Image
+  src="https://lh3.googleusercontent.com/d/1SdN0ru2ePVBOuohjH_K_-5avcOAod7ts"
+  alt="ref sheet"
+  width={3550}
+  height={2450}
+  loading="eager"
+  class="not-prose rounded-lg transition-border-radius hover:rounded-none"
+/>
+
+# Color Palette
+
+<Swatches colors={frontmatter.colors} />
+
+# Other Details
+
+- Can be drawn with 4 or 5 fingers per hand, depending on artist's preference.
+- Should never be drawn with farmed animal details (ear tag, nose ring, etc).
+- Face spots should be consistent with ref sheet.
+- Character's name is Indigo, my (user)name is Cuebitt.
+
+# Gallery
+
+<Carousel items={json} />
+
+## 3D Model
+
+<div class="not-prose flex items-center justify-center gap-2">
+  <span class="text-5xl">🚨</span>
+  <div class="text-center text-3xl">
+    The 2D art above is preferred for use as a character reference.
+  </div>
+  <span class="text-5xl">🚨</span>
+</div>
+
+<div class="not-prose flex w-full justify-center">
+  <iframe
+    allow="fullscreen"
+    allowfullscreen=""
+    height="100%"
+    src="https://streamable.com/e/matrgn?muted=1"
+    width="100%"
+    class="aspect-video border-0"
+  ></iframe>
+</div>
+
+This is my VRChat avatar! I used [skip4d's Chibi Avatar Base](https://skip4d.gumroad.com/l/chibi) to make it!
+It was really easy to work with and I highly recommend it if you want to make your own model in the same style.
+
+I made the horns and halo myself using Blender, turned the upright rabbit ears to the side to make cow ears,
+and modified a [glasses model by iPoly3D](https://poly.pizza/m/Dz9SyIEq7w) to fit. It's even "Good" rated on
+PC and Quest! (which was a lot of work to get right!!!)
+
+### Funny Stuff
+
+<div class="grid grid-cols-2 gap-3">
+  <div>
+    <iframe allow="fullscreen" allowfullscreen="" height="100%" src="https://streamable.com/e/x4uyiq?loop=0" width="100%" class="border-0 size-full aspect-video"></iframe>
+    <a href="https://youtu.be/vLQ_vrqvcyU?si=L_mO6HrdkqbF1V5D" target="_blank" rel="noopener noreferrer">animation by Apollo</a>
+  </div>
+
+  <div>
+    <iframe allow="fullscreen" allowfullscreen="" height="100%" src="https://streamable.com/e/bz9tup?loop=0" width="100%" class="border-0 size-full aspect-video"></iframe>
+    <a href="https://youtu.be/kfI_l6QlpxI?si=MNgM4VyEgnknfKY8" target="_blank" rel="noopener noreferrer">animation by MagicalPouchOfMagic</a>
+  </div>
+</div>
