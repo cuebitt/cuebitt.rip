@@ -31,6 +31,8 @@ colors:
 
 import { Image } from "astro:assets";
 import Swatches from "../../components/swatches.astro";
+import Carousel from "../../components/carousel.astro";
+import json from "./gallery.json";
 
 # Background
 
@@ -38,15 +40,14 @@ Indigo was hit and killed by the [Isekai Truck](https://en.wikipedia.org/wiki/Tr
 
 # Ref Sheet
 
-<div class="relative">
-  <Image
-    src="https://lh3.googleusercontent.com/d/1eaQEs6f3so3GHTT1ei3OeBrub39m_07D"
-    alt="ref sheet"
-    width={1600}
-    height={1170}
-  />
-  <div class="absolute left-1/3 top-0 h-1/5 w-1/4 bg-[#ecf0ff]"> </div>
-</div>
+<Image
+  src="https://lh3.googleusercontent.com/d/1SdN0ru2ePVBOuohjH_K_-5avcOAod7ts"
+  alt="ref sheet"
+  width={3550}
+  height={2450}
+      loading="eager"
+  class="rounded-lg hover:rounded-none transition-border-radius"
+/>
 
 # Color Palette
 
@@ -59,22 +60,6 @@ Indigo was hit and killed by the [Isekai Truck](https://en.wikipedia.org/wiki/Tr
 - Face spots should be consistent with ref sheet.
 - Character's name is Indigo, my (user)name is Cuebitt.
 
-# Test section
+# Images
 
-Text for the test section
-
-## Subsection
-
-Text for the subsection
-
-### Subsubsection
-
-Text for the subsubsection
-
-# Next heading
-
-hello world
-
-## Next section
-
-hello world
+<Carousel items={json} />

@@ -4,7 +4,7 @@ import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 import alpinejs from "@astrojs/alpinejs";
 import mdx from "@astrojs/mdx";
-import { rehypeHeadingIds } from '@astrojs/markdown-remark';
+import { rehypeHeadingIds } from "@astrojs/markdown-remark";
 // @ts-ignore
 import sectionize from "@hbsnow/rehype-sectionize";
 import alpineIntersectHeading from "./src/util/rehype-alpine-intersect";
@@ -16,7 +16,7 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     icon(),
-    alpinejs({entrypoint: '/src/util/alpine-entrypoint'}),
+    alpinejs({ entrypoint: "/src/util/alpine-entrypoint" }),
     mdx(),
   ],
   image: {
@@ -25,5 +25,5 @@ export default defineConfig({
   site: "https://cuebitt.rip",
   markdown: {
     rehypePlugins: [rehypeHeadingIds, sectionize, alpineIntersectHeading],
-  }
+  },
 });

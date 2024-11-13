@@ -1,0 +1,123 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+interface CarouselItem {
+  img_src: string;
+  img_alt: string;
+  width: number;
+  height: number;
+  date: string;
+  attribution_name: string;
+  attribution_url: string;
+  blur: boolean;
+}
+
+interface Props {
+  items: CarouselItem[];
+}
+
+const { items } = Astro.props;
+const width = `${items.length * 100}%`;
+
+function formatDate(dateStr: string) {
+  // Create a new Date object using the year and month parts
+  const [year, month] = dateStr.split("-");
+  const date = new Date(parseInt(year), parseInt(month) - 1); // Month is 0-indexed
+
+  // Get the month name in short form (e.g., 'Jan') and last 2 digits of year
+  const monthName = date.toLocaleString(undefined, { month: "short" });
+  const shortYear = year.slice(-2);
+
+  return `${monthName} '${shortYear}`;
+}
+
+const _items = items.map((item) => ({
+  ...item,
+  date: formatDate(item.date),
+}));
+---
+
+<div
+  class="not-prose relative rounded-md border-2 transition-border-radius hover:rounded-none"
+>
+  <div class="aspect-video h-auto w-full overflow-hidden">
+    <div style={`width: ${width};`} class="m-0 h-full p-0">
+      <ul
+        class="m-0 grid size-full list-none auto-cols-fr grid-flow-col grid-rows-1 p-0"
+        data-carousel-list
+      >
+        {
+          _items.map((item) => (
+            <li class="m-0 p-0">
+              <figure class="relative m-0 h-full">
+                <Image
+                  class:list={[
+                    "mx-auto",
+                    "h-full",
+                    "w-auto",
+                    { "blur-lg hover:blur-none": item.blur },
+                  ]}
+                  src={item.img_src}
+                  alt={item.img_alt}
+                  width={item.width}
+                  height={item.height}
+                />
+
+                <figcaption class="absolute bottom-0 right-0 rounded-tl-lg bg-slate-100 px-2 py-1 hover:opacity-50">
+                  <div class="flex">
+                    <span class="mr-0.5">🎨</span>
+                    <a
+                      href={item.attribution_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="font-medium italic underline"
+                    >
+                      {item.attribution_name.trim()}
+                    </a>
+                    <span>, {item.date}</span>
+                  </div>
+                </figcaption>
+              </figure>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+  <button
+    data-prev-btn
+    class="absolute inset-y-1/2 -left-3 size-fit rounded-full bg-slate-200 p-1 text-4xl opacity-75"
+    aria-label="previous image"
+    ><Icon name="fa6-solid:angle-left" class="mx-auto" /></button
+  >
+  <button
+    data-next-btn
+    class="absolute inset-y-1/2 -right-2 size-fit rounded-full bg-slate-200 p-1 text-4xl opacity-75"
+    aria-label="next image"
+    ><Icon name="fa6-solid:angle-right" class="mx-auto" />
+  </button>
+</div>
+
+<script is:inline>
+  const list = document.querySelector("[data-carousel-list]");
+  const items = list.children;
+
+  let c_idx = 0;
+
+  const nextIdx = (dir) => (c_idx + dir + items.length) % items.length;
+
+  document.querySelector("[data-prev-btn]").addEventListener("click", () => {
+    c_idx = nextIdx(-1);
+    items[c_idx].scrollIntoView({
+      behavior: c_idx === items.length - 1 ? "instant" : "smooth",
+    });
+  });
+
+  document.querySelector("[data-next-btn]").addEventListener("click", () => {
+    c_idx = nextIdx(1);
+    items[c_idx].scrollIntoView({
+      behavior: c_idx === 0 ? "instant" : "smooth",
+    });
+  });
+</script>
