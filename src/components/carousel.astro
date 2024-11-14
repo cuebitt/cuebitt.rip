@@ -15,10 +15,11 @@ interface CarouselItem {
 
 interface Props {
   items: CarouselItem[];
+  class?: string;
 }
 
-const { items } = Astro.props;
-const width = `${items.length * 100}%`;
+const { items, class: className } = Astro.props;
+const width = `${(items.length + 2) * 100}%`;
 
 function formatDate(dateStr: string) {
   // Create a new Date object using the year and month parts
@@ -39,9 +40,15 @@ const _items = items.map((item) => ({
 ---
 
 <div
-  class="not-prose relative rounded-md border-2 transition-border-radius hover:rounded-none"
+  class:list={[
+    "not-prose relative rounded-md border-2 transition-border-radius hover:rounded-none",
+    className,
+  ]}
 >
-  <div class="aspect-video h-auto w-full overflow-hidden">
+  <div
+    class="aspect-video h-auto w-full snap-x snap-mandatory overflow-y-hidden"
+    data-scroller
+  >
     <div style={`width: ${width};`} class="m-0 h-full p-0">
       <ul
         class="m-0 grid size-full list-none auto-cols-fr grid-flow-col grid-rows-1 p-0"
@@ -49,7 +56,7 @@ const _items = items.map((item) => ({
       >
         {
           _items.map((item) => (
-            <li class="m-0 p-0">
+            <li class="m-0 select-none snap-center p-0">
               <figure class="relative m-0 h-full">
                 <Image
                   class:list={[
@@ -64,7 +71,7 @@ const _items = items.map((item) => ({
                   height={item.height}
                 />
 
-                <figcaption class="absolute bottom-0 right-0 rounded-tl-lg bg-slate-100 px-2 py-1 hover:opacity-50">
+                <figcaption class="absolute bottom-0 right-0 rounded-t-lg bg-slate-100 px-2 py-1 hover:opacity-50 dark:bg-slate-500 dark:text-neutral-200">
                   <div class="flex">
                     <span class="mr-0.5">🎨</span>
                     <a
@@ -87,37 +94,97 @@ const _items = items.map((item) => ({
   </div>
   <button
     data-prev-btn
-    class="absolute inset-y-1/2 -left-3 size-fit rounded-full bg-slate-200 p-1 text-4xl opacity-75"
+    class="absolute inset-y-1/2 -left-3 size-fit -translate-y-1/2 rounded-full bg-slate-200 p-1 text-4xl opacity-75 dark:bg-slate-500"
     aria-label="previous image"
     ><Icon name="fa6-solid:angle-left" class="mx-auto" /></button
   >
   <button
     data-next-btn
-    class="absolute inset-y-1/2 -right-2 size-fit rounded-full bg-slate-200 p-1 text-4xl opacity-75"
+    class="absolute inset-y-1/2 -right-2 size-fit -translate-y-1/2 rounded-full bg-slate-200 p-1 text-4xl opacity-75 dark:bg-slate-500"
     aria-label="next image"
     ><Icon name="fa6-solid:angle-right" class="mx-auto" />
   </button>
 </div>
 
 <script is:inline>
+  const scroller = document.querySelector("[data-scroller]");
   const list = document.querySelector("[data-carousel-list]");
   const items = list.children;
 
-  let c_idx = 0;
+  const first = list.firstElementChild.cloneNode(true);
+  const last = list.lastElementChild.cloneNode(true);
+
+  list.append(first);
+  list.prepend(last);
+
+  let c_idx;
 
   const nextIdx = (dir) => (c_idx + dir + items.length) % items.length;
 
   document.querySelector("[data-prev-btn]").addEventListener("click", () => {
+    if (scrollTimeout) return;
+
     c_idx = nextIdx(-1);
+
+    console.log("move to: ", `[${c_idx}/${items.length}]`);
+
     items[c_idx].scrollIntoView({
-      behavior: c_idx === items.length - 1 ? "instant" : "smooth",
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
     });
   });
 
   document.querySelector("[data-next-btn]").addEventListener("click", () => {
+    if (scrollTimeout) return;
+
     c_idx = nextIdx(1);
+
+    console.log("move to: ", `[${c_idx}/${items.length}]`);
+
     items[c_idx].scrollIntoView({
-      behavior: c_idx === 0 ? "instant" : "smooth",
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
     });
   });
+
+  let scrollTimeout;
+  scroller.addEventListener("scroll", () => {
+    clearTimeout(scrollTimeout);
+
+    scrollTimeout = setTimeout(() => {
+      if (c_idx === 0) {
+        // scrolled to clone of the last element
+        console.log("scrolled to clone of the last element");
+        items[items.length - 2].scrollIntoView({
+          behavior: "instant",
+          block: "nearest",
+          inline: "center",
+        });
+
+        c_idx = items.length - 2;
+      } else if (c_idx === items.length - 1) {
+        // scrolled to the clone of the first element
+        console.log("scrolled to clone of the first element");
+        items[1].scrollIntoView({
+          behavior: "instant",
+          block: "nearest",
+          inline: "center",
+        });
+
+        c_idx = 1;
+      }
+
+      clearTimeout(scrollTimeout);
+      scrollTimeout = null;
+    }, 100);
+  });
+
+  items[1].scrollIntoView({
+    behavior: "instant",
+    block: "nearest",
+    inline: "center",
+  });
+  c_idx = 1;
 </script>
