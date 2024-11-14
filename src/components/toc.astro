@@ -11,8 +11,10 @@ interface Heading {
 
 interface Props {
   headings: Heading[];
+  pathClass?: string;
+  listClass?: string;
 }
-const { headings } = Astro.props;
+const { headings, pathClass, listClass } = Astro.props;
 
 interface TreeItem {
   depth: number;
@@ -48,12 +50,12 @@ const headingsTree = buildTree(headings);
   x-init="update = () => updatePath();"
   x-resize="drawPath(); updatePath()"
 >
-  <ul class="grid w-fit gap-3 pl-2" data-toc-list-top>
+  <ul class:list={["grid w-fit gap-3 pl-2", listClass]} data-toc-list-top>
     {headingsTree.map((node) => <TocHeading heading={node} />)}
   </ul>
 
   <svg
-    class="pointer-events-none absolute inset-0 size-full"
+    class:list={["pointer-events-none absolute inset-0 size-full", pathClass]}
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
