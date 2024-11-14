@@ -70,7 +70,7 @@ const og_image_optimized = await getImage({
     </div>
   </header>
   <div
-    class="container mx-auto flex flex-col gap-8 md:grid"
+    class="xs:max-md:flex xs:max-md:flex-col xs:max-md:items-center container mx-auto gap-8 md:grid"
     style="grid-template-columns: 1fr 3fr 1fr;"
     x-data="tocIntersect"
   >
@@ -93,7 +93,7 @@ const og_image_optimized = await getImage({
       </article>
     </main>
     <aside
-      class="top-32 mb-16 mt-10 h-fit sm:order-first sm:mx-auto md:sticky md:order-none"
+      class="top-32 order-first mx-auto mb-16 mt-10 h-fit md:sticky md:order-none"
     >
       <WikiCard
         class="bg-white dark:border-slate-500 dark:bg-gray-800 dark:text-slate-100"

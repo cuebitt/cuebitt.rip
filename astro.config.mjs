@@ -22,7 +22,7 @@ export default defineConfig({
     expressiveCode(),
     mdx(),
     sitemap(),
-    ],
+  ],
   image: {
     remotePatterns: [{ protocol: "https" }],
   },
