@@ -181,10 +181,6 @@ const _items = items.map((item) => ({
     }, 100);
   });
 
-  items[1].scrollIntoView({
-    behavior: "instant",
-    block: "nearest",
-    inline: "center",
-  });
+  scroller.scrollLeft = items[1].offsetLeft;
   c_idx = 1;
 </script>
