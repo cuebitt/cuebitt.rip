@@ -29,7 +29,7 @@ colors:
     hex: "#185991"
 ---
 
-import { Image } from "astro:assets";
+import { Image, Picture } from "astro:assets";
 import Swatches from "../../../components/swatches.astro";
 import Carousel from "../../../components/carousel.astro";
 import json from "./gallery.json";
@@ -40,13 +40,14 @@ Indigo was hit and killed by the [Isekai Truck](https://en.wikipedia.org/wiki/Tr
 
 # Ref Sheet
 
-<Image
+<Picture
   src="https://lh3.googleusercontent.com/d/1SdN0ru2ePVBOuohjH_K_-5avcOAod7ts"
   alt="ref sheet"
   width={3550}
   height={2450}
   loading="eager"
   class="not-prose rounded-lg transition-border-radius hover:rounded-none"
+  formats={['png']}
 />
 
 # Color Palette

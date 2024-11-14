@@ -1,8 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import "@fontsource/montserrat";
+
+const og_image_optimized = await getImage({
+  src: "https://lh3.googleusercontent.com/d/1AEK8eeReXyjul27eKhplG6aneMTuf4cL",
+  width: 4063,
+  height: 3893,
+});
 ---
 
 <Layout title="Cuebitt.RIP">
@@ -10,6 +16,8 @@ import "@fontsource/montserrat";
     <script
       src="https://cdn.jsdelivr.net/gh/cuebitt/webcomponents@v1.3.1/components/lanyard-status/lanyard-status.min.js"
     ></script>
+    <meta name="og:image" content={og_image_optimized.src} />
+    <meta name="og:description" content="Cuebitt's links and bio" />
   </Fragment>
 
   <main
@@ -152,12 +160,12 @@ import "@fontsource/montserrat";
             <a
               href="/art"
               class="flex w-full flex-row justify-between rounded-full bg-violet-400 px-6 py-4 shadow-md transition hover:scale-110 hover:bg-violet-500 dark:bg-violet-900 dark:hover:bg-violet-700"
-              >Fursona Wiki <Icon name="lucide:palette" />
+              >Fursona Wiki <Icon name="fa6-solid:palette" />
             </a>
             <a
               href="/"
               class="flex w-full flex-row justify-between rounded-full bg-violet-400 px-6 py-4 shadow-md transition hover:scale-110 hover:bg-violet-500 dark:bg-violet-900 dark:hover:bg-violet-700"
-              >Blog <Icon name="lucide:pen-tool" />
+              >Blog <Icon name="fa6-solid:pen-fancy" />
             </a>
           </div>
         </div>
