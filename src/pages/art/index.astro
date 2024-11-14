@@ -38,13 +38,28 @@ const og_image_optimized = await getImage({
   src: "https://lh3.googleusercontent.com/d/1SdN0ru2ePVBOuohjH_K_-5avcOAod7ts",
   width: 3550,
   height: 2450,
+  format: "png",
 });
 ---
 
 <Layout title={title_subtitle}>
   <Fragment slot="head">
-    <meta name="og:image" content={og_image_optimized.src} />
-    <meta name="og:description" content={title_subtitle} />
+    <meta name="description" content={title_subtitle} />
+
+    <meta property="og:url" content="https://cuebitt.rip/art/" />
+    <meta property="og:type" content="website" />
+
+    <meta property="og:description" content={title_subtitle} />
+    <meta property="og:image" content={og_image_optimized.src} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="cuebitt.rip" />
+    <meta property="twitter:url" content={og_image_optimized.src} />
+    <meta name="twitter:title" content="Cuebitt.RIP" />
+    <meta name="twitter:description" content={title_subtitle} />
+    <meta name="twitter:image" content={og_image_optimized.src} />
+
+    <meta name="theme-color" content="#E0CCFA" />
   </Fragment>
 
   <header class="container mx-auto py-5">
