@@ -30,6 +30,7 @@ colors:
 ---
 
 import { Image, Picture } from "astro:assets";
+import { Vimeo } from "astro-embed";
 import Swatches from "../../../components/swatches.astro";
 import Carousel from "../../../components/carousel.astro";
 import json from "./gallery.json";
@@ -40,30 +41,30 @@ Indigo was hit and killed by the [Isekai Truck](https://en.wikipedia.org/wiki/Tr
 
 # Ref Sheet
 
-<figure class="relative m-0 h-full not-prose">
-<Picture
-  src="https://lh3.googleusercontent.com/d/1SdN0ru2ePVBOuohjH_K_-5avcOAod7ts"
-  alt="ref sheet"
-  width={3550}
-  height={2450}
-  loading="eager"
-  class="not-prose rounded-lg transition-border-radius hover:rounded-none"
-  formats={['png']}
-/>
-<figcaption class="absolute bottom-0 right-0 rounded-t-lg bg-slate-100 px-2 py-1 hover:opacity-50 dark:bg-slate-500 dark:text-neutral-200">
-  <div class="flex flex-row">
-    <span class="mr-0.5">🎨</span>
-    <a
-      href="https://karpetshark.tumblr.com/"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="font-medium italic underline"
-    >
-      karpetshark
-    </a>
-    <span>, Nov '23</span>
-  </div>
-</figcaption>
+<figure class="not-prose relative m-0 h-full">
+  <Picture
+    src="https://lh3.googleusercontent.com/d/1SdN0ru2ePVBOuohjH_K_-5avcOAod7ts"
+    alt="ref sheet"
+    width={3550}
+    height={2450}
+    loading="eager"
+    class="not-prose rounded-lg transition-border-radius hover:rounded-none"
+    formats={["png"]}
+  />
+  <figcaption class="absolute bottom-0 right-0 rounded-t-lg bg-slate-100 px-2 py-1 hover:opacity-50 dark:bg-slate-500 dark:text-neutral-200">
+    <div class="flex flex-row">
+      <span class="mr-0.5">🎨</span>
+      <a
+        href="https://karpetshark.tumblr.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-medium italic underline"
+      >
+        karpetshark
+      </a>
+      <span>, Nov '23</span>
+    </div>
+  </figcaption>
 </figure>
 
 # Color Palette
@@ -79,7 +80,10 @@ Indigo was hit and killed by the [Isekai Truck](https://en.wikipedia.org/wiki/Tr
 
 # Gallery
 
-<Carousel items={json} class="bg-white dark:bg-gray-800 dark:border-slate-500" />
+<Carousel
+  items={json}
+  class="bg-white dark:border-slate-500 dark:bg-gray-800"
+/>
 
 ## 3D Model
 
@@ -92,16 +96,9 @@ Indigo was hit and killed by the [Isekai Truck](https://en.wikipedia.org/wiki/Tr
 </div>
 
 <div class="not-prose flex w-full justify-center">
-  <iframe
-  title="VRChat Avatar 360 degrees turnaround"
-    allow="fullscreen"
-    allowfullscreen=""
-    height="100%"
-    src="https://streamable.com/e/matrgn?muted=1"
-    width="100%"
-    class="aspect-video border-0"
-    loading="lazy"
-  ></iframe>
+  <div class="aspect-video w-full">
+    <Vimeo id="1030356509" posterQuality="max" params="loop=true" />
+  </div>
 </div>
 
 This is my VRChat avatar! I used [skip4d's Chibi Avatar Base](https://skip4d.gumroad.com/l/chibi) to make it!
@@ -115,12 +112,16 @@ PC and Quest! (which was a lot of work to get right!!!)
 
 <div class="grid grid-cols-2 gap-3">
   <div>
-    <iframe title="Hit or miss tiktok recreation" allow="fullscreen" allowfullscreen="" height="100%" src="https://streamable.com/e/x4uyiq?loop=0" width="100%" class="border-0 size-full aspect-video" loading="lazy"></iframe>
+   <div class="aspect-video">
+  <Vimeo id="1030354961" />
+   </div>
     <a href="https://youtu.be/vLQ_vrqvcyU?si=L_mO6HrdkqbF1V5D" target="_blank" rel="noopener noreferrer">animation by Apollo</a>
   </div>
 
   <div>
-    <iframe title="Jump in the caac 3d animated video" allow="fullscreen" allowfullscreen="" height="100%" src="https://streamable.com/e/bz9tup?loop=0" width="100%" class="border-0 size-full aspect-video" loading="lazy"></iframe>
+  <div class="aspect-video">
+    <Vimeo id="1030355171" />
+  </div>
     <a href="https://youtu.be/kfI_l6QlpxI?si=MNgM4VyEgnknfKY8" target="_blank" rel="noopener noreferrer">animation by MagicalPouchOfMagic</a>
   </div>
 </div>
