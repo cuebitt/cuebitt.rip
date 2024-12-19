@@ -61,7 +61,7 @@ const og_image_optimized = await getImage({
 
   <header class="mx-auto py-5 container dark:text-slate-100">
     <div class="flex flex-row gap-4">
-      <Image src={ballImage} alt="" class="my-auto size-16" />
+      <Image src={ballImage} alt="" class="my-auto size-16" loading="eager" />
       <hgroup>
         <h1 class="text-5xl font-bold">{title}</h1>
         <h2 class="text-2xl text-gray-500 dark:text-gray-400">{subtitle}</h2>
@@ -108,11 +108,11 @@ const og_image_optimized = await getImage({
   <footer class="mx-auto p-4 container dark:text-slate-100">
     <nav class="mx-auto w-fit">
       <ul>
-        <li class="flex flex-row align-middle space-x-2">
+        <li class="flex flex-row items-center space-x-2">
           <i class="i-fa6-solid:house" class="my-auto"></i>
           <a href="/" class="transition hover:scale-110"> Home </a>
         </li>
-        <li class="flex flex-row align-middle space-x-2">
+        <li class="flex flex-row items-center space-x-2">
           <i class="i-fa6-brands:github" class="my-auto"></i>
           <a
             href="http://github.com/cuebitt/cuebitt.rip"
