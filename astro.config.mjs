@@ -1,7 +1,6 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
-import icon from "astro-icon";
+import UnoCSS from "unocss/astro";
 import alpinejs from "@astrojs/alpinejs";
 import mdx from "@astrojs/mdx";
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
@@ -14,10 +13,9 @@ import expressiveCode from "astro-expressive-code";
 // https://astro.build/config
 export default defineConfig({
   integrations: [
-    tailwind({
-      applyBaseStyles: false,
+    UnoCSS({
+      injectReset: true,
     }),
-    icon(),
     alpinejs({ entrypoint: "/src/util/alpine-entrypoint" }),
     expressiveCode(),
     mdx(),

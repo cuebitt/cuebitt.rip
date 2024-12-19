@@ -1,5 +1,4 @@
 ---
-import { Icon } from "astro-icon/components";
 import Layout from "../../layouts/Layout.astro";
 import WikiCard from "../../components/wiki-card.astro";
 import Toc from "../../components/toc.astro";
@@ -60,7 +59,7 @@ const og_image_optimized = await getImage({
     <meta name="theme-color" content="#E0CCFA" />
   </Fragment>
 
-  <header class="container mx-auto py-5 dark:text-slate-100">
+  <header class="mx-auto py-5 container dark:text-slate-100">
     <div class="flex flex-row gap-4">
       <Image src={ballImage} alt="" class="my-auto size-16" />
       <hgroup>
@@ -70,7 +69,7 @@ const og_image_optimized = await getImage({
     </div>
   </header>
   <div
-    class="xs:max-md:flex xs:max-md:flex-col xs:max-md:items-center container mx-auto gap-8 md:grid"
+    class="xs:max-md:flex xs:max-md:flex-col xs:max-md:items-center mx-auto gap-8 container md:grid"
     style="grid-template-columns: 1fr 3fr 1fr;"
     x-data="tocIntersect"
   >
@@ -87,7 +86,7 @@ const og_image_optimized = await getImage({
     </aside>
     <main class="w-full">
       <article
-        class="prose prose-lg m-0 w-full max-w-full dark:prose-invert prose-headings:underline prose-headings:decoration-violet-300 prose-h1:text-4xl dark:prose-headings:decoration-violet-500"
+        class="m-0 max-w-full w-full flex flex-col text-lg prose prose-neutral space-y-5 dark:prose-invert"
       >
         <Content />
       </article>
@@ -105,16 +104,16 @@ const og_image_optimized = await getImage({
     </aside>
   </div>
 
-  <hr class="container mx-auto mt-24" />
-  <footer class="container mx-auto p-4 dark:text-slate-100">
+  <hr class="mx-auto mt-24 container" />
+  <footer class="mx-auto p-4 container dark:text-slate-100">
     <nav class="mx-auto w-fit">
       <ul>
-        <li class="flex flex-row space-x-2 align-middle">
-          <Icon name="fa6-solid:house" class="my-auto" />
+        <li class="flex flex-row align-middle space-x-2">
+          <i class="i-fa6-solid:house" class="my-auto"></i>
           <a href="/" class="transition hover:scale-110"> Home </a>
         </li>
-        <li class="flex flex-row space-x-2 align-middle">
-          <Icon name="fa6-brands:github" class="my-auto" />
+        <li class="flex flex-row align-middle space-x-2">
+          <i class="i-fa6-brands:github" class="my-auto"></i>
           <a
             href="http://github.com/cuebitt/cuebitt.rip"
             target="_blank"
