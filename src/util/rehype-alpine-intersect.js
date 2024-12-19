@@ -18,8 +18,6 @@ export default function rehypeAddDataIntersect() {
           node.properties["x-intersect:leave"] =
             `removeSection('${ariaLabelledby}');`;
         }
-
-        node.properties.className = "mb-10";
       }
     });
   };
