@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import { Icon } from "astro-icon/components";
+import "@splidejs/splide/css";
+import { Splide, SplideSlide } from "astro-splide";
 
 interface CarouselItem {
   img_src: string;
@@ -18,8 +19,7 @@ interface Props {
   class?: string;
 }
 
-const { items, class: className } = Astro.props;
-const width = `${(items.length + 2) * 100}%`;
+const { items } = Astro.props;
 
 function formatDate(dateStr: string) {
   // Create a new Date object using the year and month parts
@@ -40,147 +40,39 @@ const _items = items.map((item) => ({
 ---
 
 <div
-  class:list={[
-    "not-prose relative rounded-md border-2 transition-border-radius hover:rounded-none",
-    className,
-  ]}
+  class="overflow-hidden rounded-lg border-2 bg-white transition-border-radius hover:rounded-none dark:border-slate-500 dark:bg-slate-800"
 >
-  <div
-    class="aspect-video h-auto w-full snap-x snap-mandatory overflow-y-hidden"
-    data-scroller
-  >
-    <div style={`width: ${width};`} class="m-0 h-full p-0">
-      <ul
-        class="m-0 grid size-full list-none auto-cols-fr grid-flow-col grid-rows-1 p-0"
-        data-carousel-list
-      >
-        {
-          _items.map((item) => (
-            <li class="m-0 select-none snap-center p-0">
-              <figure class="relative m-0 h-full">
-                <Image
-                  class:list={[
-                    "mx-auto",
-                    "h-full",
-                    "w-auto",
-                    { "blur-lg hover:blur-none": item.blur },
-                  ]}
-                  src={item.img_src}
-                  alt={item.img_alt}
-                  width={item.width}
-                  height={item.height}
-                />
+  <Splide options={{ type: "loop", heightRatio: 9 / 16 }}>
+    {
+      _items.map((item, index) => (
+        <SplideSlide class="flex flex-col">
+          <figure class="relative my-0 max-h-full">
+            <Image
+              src={item.img_src}
+              alt={item.img_alt}
+              width={item.width}
+              height={item.height}
+              loading="lazy"
+              class="mx-auto my-0 max-h-full object-contain"
+            />
 
-                <figcaption class="absolute bottom-0 right-0 rounded-t-lg bg-slate-100 px-2 py-1 hover:opacity-50 dark:bg-slate-500 dark:text-neutral-200">
-                  <div class="flex">
-                    <span class="mr-0.5">🎨</span>
-                    <a
-                      href={item.attribution_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="font-medium italic underline"
-                    >
-                      {item.attribution_name.trim()}
-                    </a>
-                    <span>, {item.date}</span>
-                  </div>
-                </figcaption>
-              </figure>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </div>
-  <button
-    data-prev-btn
-    class="absolute inset-y-1/2 -left-3 size-fit -translate-y-1/2 rounded-full bg-slate-200 p-1 text-4xl opacity-75 dark:bg-slate-500"
-    aria-label="previous image"
-    ><Icon name="fa6-solid:angle-left" class="mx-auto" /></button
-  >
-  <button
-    data-next-btn
-    class="absolute inset-y-1/2 -right-2 size-fit -translate-y-1/2 rounded-full bg-slate-200 p-1 text-4xl opacity-75 dark:bg-slate-500"
-    aria-label="next image"
-    ><Icon name="fa6-solid:angle-right" class="mx-auto" />
-  </button>
+            <figcaption class="absolute bottom-0 right-0 rounded-t-lg bg-slate-100 px-2 py-1 hover:opacity-50 dark:bg-slate-500 dark:text-neutral-200">
+              <div class="flex">
+                <span class="mr-0.5">🎨</span>
+                <a
+                  href={item.attribution_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-medium italic underline"
+                >
+                  {item.attribution_name.trim()}
+                </a>
+                <span>, {item.date}</span>
+              </div>
+            </figcaption>
+          </figure>
+        </SplideSlide>
+      ))
+    }
+  </Splide>
 </div>
-
-<script is:inline>
-  const scroller = document.querySelector("[data-scroller]");
-  const list = document.querySelector("[data-carousel-list]");
-  const items = list.children;
-
-  const first = list.firstElementChild.cloneNode(true);
-  const last = list.lastElementChild.cloneNode(true);
-
-  list.append(first);
-  list.prepend(last);
-
-  let c_idx;
-
-  const nextIdx = (dir) => (c_idx + dir + items.length) % items.length;
-
-  document.querySelector("[data-prev-btn]").addEventListener("click", () => {
-    if (scrollTimeout) return;
-
-    c_idx = nextIdx(-1);
-
-    console.log("move to: ", `[${c_idx}/${items.length}]`);
-
-    items[c_idx].scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "center",
-    });
-  });
-
-  document.querySelector("[data-next-btn]").addEventListener("click", () => {
-    if (scrollTimeout) return;
-
-    c_idx = nextIdx(1);
-
-    console.log("move to: ", `[${c_idx}/${items.length}]`);
-
-    items[c_idx].scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "center",
-    });
-  });
-
-  let scrollTimeout;
-  scroller.addEventListener("scroll", () => {
-    clearTimeout(scrollTimeout);
-
-    scrollTimeout = setTimeout(() => {
-      if (c_idx === 0) {
-        // scrolled to clone of the last element
-        console.log("scrolled to clone of the last element");
-        items[items.length - 2].scrollIntoView({
-          behavior: "instant",
-          block: "nearest",
-          inline: "center",
-        });
-
-        c_idx = items.length - 2;
-      } else if (c_idx === items.length - 1) {
-        // scrolled to the clone of the first element
-        console.log("scrolled to clone of the first element");
-        items[1].scrollIntoView({
-          behavior: "instant",
-          block: "nearest",
-          inline: "center",
-        });
-
-        c_idx = 1;
-      }
-
-      clearTimeout(scrollTimeout);
-      scrollTimeout = null;
-    }, 100);
-  });
-
-  scroller.scrollLeft = items[1].offsetLeft;
-  c_idx = 1;
-</script>
