@@ -32,13 +32,13 @@ const { topic, imageSrc, imageAlt, details, class: className } = Astro.props;
     alt={imageAlt}
     width={400}
     height={400}
-    class="rounded-xl border-2 transition-border-radius hover:rounded-none dark:border-slate-500"
+    class="border-2 rounded-xl transition-border-radius dark:border-slate-500 hover:rounded-none"
     loading="eager"
   />
 
   <hr />
 
-  <div class="rounded-lg border-2 dark:border-slate-500">
+  <div class="border-2 rounded-lg dark:border-slate-500">
     <table class="w-full gap-x-8">
       <tbody>
         {
