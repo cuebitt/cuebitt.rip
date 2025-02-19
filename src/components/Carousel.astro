@@ -43,13 +43,13 @@ const formatDate = (date: string) => {
 							class="!mx-auto my-0 max-h-full w-fit object-contain"
 						/>
 
-						<figcaption class="absolute right-0 bottom-0 rounded-tl-md bg-slate-300 px-2 py-0.5 text-(--sl-color-text-accent) opacity-75 transition-opacity hover:opacity-25 dark:bg-slate-700">
+						<figcaption class="absolute right-0 bottom-0 rounded-tl-md bg-(--sl-color-accent-low) px-2 py-0.5 text-(--sl-color-text-accent) opacity-75 transition-opacity hover:opacity-25">
 							<a
 								href={item.attribution_url}
 								target="_blank"
 								rel="noopener noreferrer"
 							>
-								{item.attribution_name}, {formatDate(item.date)}
+								🎨 {item.attribution_name}, {formatDate(item.date)}
 							</a>
 						</figcaption>
 					</figure>
