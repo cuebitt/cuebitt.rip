@@ -1,0 +1,21 @@
+---
+title: Indigo
+description: Hello world
+---
+
+import { colors, refSheet } from "./_indigo/details.json";
+import ColorSwatches from "@components/ColorSwatches.astro";
+import { Card } from '@astrojs/starlight/components';
+import AttributedImage from "@components/AttributedImage.astro";
+
+## Ref Sheet
+<AttributedImage image={refSheet} />
+
+## Colors
+<div class="w-fit">
+    <Card title="Color Swatches" icon="sun">
+        <div>
+            <ColorSwatches colors={colors} />
+        </div>
+    </Card>
+</div>

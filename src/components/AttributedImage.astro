@@ -1,0 +1,42 @@
+---
+import { Image } from "astro:assets";
+import { parse, format } from "date-fns";
+
+interface _image {
+  img_src: string;
+  img_alt: string;
+  attribution_name: string;
+  attribution_url: string;
+  date: string;
+  blur: boolean;
+  width: number;
+  height: number;
+}
+
+interface Props {
+  image: _image;
+  img_format: string;
+}
+const { image, img_format }: Props = Astro.props;
+
+// format date
+const date = parse(image.date, "yyyy-MM", new Date());
+const dateFormatted = format(date, "LLL yy").split(" ").join(" '");
+---
+
+<figure class="relative h-fit w-fits">
+  <Image
+    src={image.img_src}
+    alt={image.img_alt}
+    width={image.width}
+    height={image.height}
+    format={img_format}
+  />
+  <figcaption
+    class="absolute right-0 bottom-0 bg-slate-300 dark:bg-slate-700 px-2 py-0.5 rounded-tl-md hover:opacity-25 transition-opacity"
+  >
+    <a href={image.attribution_url} target="_blank" rel="noopener noreferrer"
+      >{image.attribution_name}, {dateFormatted}</a
+    >
+  </figcaption>
+</figure>
