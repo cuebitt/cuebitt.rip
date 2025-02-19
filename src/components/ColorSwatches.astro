@@ -1,48 +1,48 @@
 ---
 interface Color {
-  hex: string;
-  description: string;
+	hex: string;
+	description: string;
 }
 
 interface Props {
-  colors: Color[];
+	colors: Color[];
 }
 
 const { colors }: Props = Astro.props;
 ---
 
 <table class="!m-0">
-  <thead>
-    <tr>
-      <th>
-        Swatch
+	<thead>
+		<tr>
+			<th>
+				Swatch
 
-        <i
-          class="icon-[fa6-solid--circle-question] align-middle"
-          title="click to copy"></i>
-      </th>
-      <th>Hex</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    {
-      colors.map(({ hex, description }) => (
-        <tr data-swatch data-swatch-hex={hex}>
-          <td style={{ backgroundColor: hex }} />
-          <td>{hex}</td>
-          <td>{description}</td>
-        </tr>
-      ))
-    }
-  </tbody>
+				<i
+					class="icon-[fa6-solid--circle-question] align-middle"
+					title="click to copy"></i>
+			</th>
+			<th>Hex</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		{
+			colors.map(({ hex, description }) => (
+				<tr data-swatch data-swatch-hex={hex}>
+					<td style={{ backgroundColor: hex }} />
+					<td>{hex}</td>
+					<td>{description}</td>
+				</tr>
+			))
+		}
+	</tbody>
 </table>
 
 <script>
-  document.querySelectorAll("[data-swatch]").forEach((swatch) => {
-    swatch.addEventListener("click", () => {
-      const hex = swatch.getAttribute("data-swatch-hex");
-      navigator.clipboard.writeText(hex || "");
-    });
-  });
+	document.querySelectorAll("[data-swatch]").forEach((swatch) => {
+		swatch.addEventListener("click", () => {
+			const hex = swatch.getAttribute("data-swatch-hex");
+			navigator.clipboard.writeText(hex || "");
+		});
+	});
 </script>
