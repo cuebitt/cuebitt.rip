@@ -10,7 +10,8 @@ export default defineConfig({
   },
   integrations: [
     starlight({
-      title: "Cuebitt's Notebook",
+      title: "😇 Cuebitt's Notebook",
+      favicon: "/favicon.ico",
       components: {
         Head: "./src/components/Head.astro",
       },
