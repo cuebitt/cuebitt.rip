@@ -1,0 +1,50 @@
+{
+	"colors": [
+		{
+			"hex": "#ffffeb",
+			"description": "Fur (Main)"
+		},
+		{
+			"description": "Halo, Eyes",
+			"hex": "#ffcf34"
+		},
+		{
+			"description": "Nose",
+			"hex": "#ffacd1"
+		},
+		{
+			"description": "Spots",
+			"hex": "#e0ccfa"
+		},
+		{
+			"description": "Eyebrows",
+			"hex": "#bc8dfa"
+		},
+		{
+			"description": "Hair (Stripe)",
+			"hex": "#a57cb0"
+		},
+		{
+			"description": "Hooves",
+			"hex": "#55106d"
+		},
+		{
+			"description": "Watch (Band)",
+			"hex": "#6d88b1"
+		},
+		{
+			"description": "Watch (Frame)",
+			"hex": "#185991"
+		}
+	],
+	"refSheet": {
+		"img_src": "https://lh3.googleusercontent.com/d/1SdN0ru2ePVBOuohjH_K_-5avcOAod7ts",
+		"img_alt": "ref sheet",
+		"attribution_name": "karpetshark",
+		"attribution_url": "https://karpetshark.tumblr.com/",
+		"date": "2023-11",
+		"blur": false,
+		"width": 3550,
+		"height": 2450
+	}
+}
