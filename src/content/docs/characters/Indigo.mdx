@@ -6,7 +6,7 @@ description: Hello world
 import { colors, refSheet } from "./_indigo/details.json";
 import gallery from "./_indigo/gallery.json";
 import ColorSwatches from "@components/ColorSwatches.astro";
-import { Card } from '@astrojs/starlight/components';
+import { Card } from "@astrojs/starlight/components";
 import AttributedImage from "@components/AttributedImage.astro";
 import Carousel from "@components/Carousel.astro";
 import { Vimeo } from "astro-embed";
@@ -18,12 +18,12 @@ import { Vimeo } from "astro-embed";
 ## Colors
 
 <div class="w-fit">
-    <Card title="Color Swatches" icon="sun">
-        <div class="flex flex-row items-start gap-8">
-            <ColorSwatches colors={colors.slice(0,5)} />
-            <ColorSwatches colors={colors.slice(5)} />
-        </div>
-    </Card>
+  <Card title="Color Swatches" icon="sun">
+    <div class="flex flex-row items-start gap-8">
+      <ColorSwatches colors={colors.slice(0, 5)} />
+      <ColorSwatches colors={colors.slice(5)} />
+    </div>
+  </Card>
 </div>
 
 ## Biography
@@ -34,23 +34,25 @@ import { Vimeo } from "astro-embed";
 </span>
 
 Indigo was hit and killed by the [Isekai Truck](https://en.wikipedia.org/wiki/Truck-kun) one day and got flewed out into the furry afterlife. Being dead doesn't seem to bother him, though.
+
 </div>
 
 # Other Details
 
 <div class="*:list-disc">
   - Can be drawn with 4 or 5 fingers per hand, depending on artist's preference.
-  - Should never be drawn with <span title="I'm vegan and this makes me sad.">farmed animal</span> details (ear tag, nose ring, etc).
-  - Face spots should be consistent with ref sheet.
-  - Character's name is Indigo, my (user)name is Cuebitt.
+  - Should never be drawn with{" "}
+  <span title="I'm vegan and this makes me sad.">farmed animal</span> details
+  (ear tag, nose ring, etc). - Face spots should be consistent with ref sheet. -
+  Character's name is Indigo, my (user)name is Cuebitt.
 </div>
 
 ## Gallery
 
 <div class="no-pad">
-    <Card title="">
-        <Carousel items={gallery} />
-    </Card>
+  <Card title="">
+    <Carousel items={gallery} />
+  </Card>
 </div>
 
 ## 3D Model
