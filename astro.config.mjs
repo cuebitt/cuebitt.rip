@@ -1,31 +1,39 @@
 // @ts-check
-import { defineConfig } from "astro/config";
-import UnoCSS from "unocss/astro";
-import alpinejs from "@astrojs/alpinejs";
-import mdx from "@astrojs/mdx";
-import { rehypeHeadingIds } from "@astrojs/markdown-remark";
-// @ts-ignore
-import sectionize from "@hbsnow/rehype-sectionize";
-import alpineIntersectHeading from "./src/util/rehype-alpine-intersect";
-import sitemap from "@astrojs/sitemap";
-import expressiveCode from "astro-expressive-code";
+import { defineConfig } from 'astro/config';
+import starlight from '@astrojs/starlight';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [
-    UnoCSS({
-      injectReset: true,
+    starlight({
+      title: 'My Docs',
+
+      sidebar: [
+        {
+          label: "Characters",
+          autogenerate: { directory: 'characters' },
+        },
+        {
+          label: 'Guides',
+          items: [
+            // Each item here is one entry in the navigation menu.
+            { label: 'Example Guide', slug: 'guides/example' },
+          ],
+        },
+        {
+          label: 'Reference',
+          autogenerate: { directory: 'reference' },
+        },
+      ],
+      customCss: [
+        "./src/styles/global.css",
+      ]
     }),
-    alpinejs({ entrypoint: "/src/util/alpine-entrypoint" }),
-    expressiveCode(),
-    mdx(),
-    sitemap(),
+
   ],
-  image: {
-    remotePatterns: [{ protocol: "https" }],
-  },
-  site: "https://cuebitt.rip",
-  markdown: {
-    rehypePlugins: [rehypeHeadingIds, sectionize, alpineIntersectHeading],
+
+  vite: {
+    plugins: [tailwindcss()],
   },
 });
