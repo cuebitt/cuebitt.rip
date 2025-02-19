@@ -9,13 +9,14 @@ import ColorSwatches from "@components/ColorSwatches.astro";
 import { Card } from '@astrojs/starlight/components';
 import AttributedImage from "@components/AttributedImage.astro";
 import Carousel from "@components/Carousel.astro";
-
-
+import { Vimeo } from "astro-embed";
 
 ## Ref Sheet
+
 <AttributedImage image={refSheet} load="eager" img_format="png" />
 
 ## Colors
+
 <div class="w-fit">
     <Card title="Color Swatches" icon="sun">
         <div class="flex flex-row items-start gap-8">
@@ -35,10 +36,60 @@ import Carousel from "@components/Carousel.astro";
 Indigo was hit and killed by the [Isekai Truck](https://en.wikipedia.org/wiki/Truck-kun) one day and got flewed out into the furry afterlife. Being dead doesn't seem to bother him, though.
 </div>
 
+# Other Details
+
+<div class="*:list-disc">
+  - Can be drawn with 4 or 5 fingers per hand, depending on artist's preference.
+  - Should never be drawn with <span title="I'm vegan and this makes me sad.">farmed animal</span> details (ear tag, nose ring, etc).
+  - Face spots should be consistent with ref sheet.
+  - Character's name is Indigo, my (user)name is Cuebitt.
+</div>
+
 ## Gallery
 
-<span class="no-pad">
-<Card title="">
-<Carousel items={gallery} />
-</Card>
-</span>
+<div class="no-pad">
+    <Card title="">
+        <Carousel items={gallery} />
+    </Card>
+</div>
+
+## 3D Model
+
+<div class="not-content flex items-center justify-center gap-2">
+  <span class="text-5xl">🚨</span>
+  <div class="text-center text-3xl">
+    The 2D art above is preferred for use as a character reference.
+  </div>
+  <span class="text-5xl">🚨</span>
+</div>
+
+<div class="not-content flex w-full justify-center">
+  <div class="aspect-video w-full">
+    <Vimeo id="1030356509" posterQuality="max" params="loop=true" />
+  </div>
+</div>
+
+This is my VRChat avatar! I used [skip4d's Chibi Avatar Base](https://skip4d.gumroad.com/l/chibi) to make it!
+It was really easy to work with and I highly recommend it if you want to make your own model in the same style.
+
+I made the horns and halo myself using Blender, turned the upright rabbit ears to the side to make cow ears,
+and modified a [glasses model by iPoly3D](https://poly.pizza/m/Dz9SyIEq7w) to fit. It's even "Good" rated on
+PC and Quest! (which was a lot of work to get right!!!)
+
+### Funny Stuff
+
+<div class="grid grid-cols-2 gap-3 not-content">
+  <div>
+   <div class="aspect-video">
+  <Vimeo id="1030354961" />
+   </div>
+    <a href="https://youtu.be/vLQ_vrqvcyU?si=L_mO6HrdkqbF1V5D" target="_blank" rel="noopener noreferrer">animation by Apollo</a>
+  </div>
+
+  <div>
+  <div class="aspect-video">
+    <Vimeo id="1030355171" />
+  </div>
+    <a href="https://youtu.be/kfI_l6QlpxI?si=MNgM4VyEgnknfKY8" target="_blank" rel="noopener noreferrer">animation by MagicalPouchOfMagic</a>
+  </div>
+</div>
