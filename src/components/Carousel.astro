@@ -28,7 +28,7 @@ const formatDate = (date: string) => {
 };
 ---
 
-<div class="overflow-hidden bg-white not-content">
+<div class="not-content overflow-hidden bg-white">
   <Splide options={{ type: "loop", heightRatio: 9 / 16 }}>
     {
       items.map((item, index) => (
@@ -40,10 +40,10 @@ const formatDate = (date: string) => {
               width={item.width}
               height={item.height}
               loading="lazy"
-              class="!mx-auto my-0 w-fit max-h-full object-contain"
+              class="!mx-auto my-0 max-h-full w-fit object-contain"
             />
 
-            <figcaption class="text-(--sl-color-text-accent) absolute right-0 bottom-0 bg-slate-300 dark:bg-slate-700 px-2 py-0.5 rounded-tl-md hover:opacity-25 opacity-75 transition-opacity">
+            <figcaption class="absolute right-0 bottom-0 rounded-tl-md bg-slate-300 px-2 py-0.5 text-(--sl-color-text-accent) opacity-75 transition-opacity hover:opacity-25 dark:bg-slate-700">
               <a
                 href={item.attribution_url}
                 target="_blank"
