@@ -10,7 +10,7 @@ export default defineConfig({
   },
   integrations: [
     starlight({
-      title: 'My Docs',
+      title: 'Cuebitt\'s Notebook',
       components: {
         Head: "./src/components/Head.astro",
       },
