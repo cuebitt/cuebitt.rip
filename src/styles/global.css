@@ -1,2 +1,8 @@
 @import "tailwindcss";
 @plugin "@iconify/tailwind4";
+
+@layer base {
+	ul {
+		@apply list-inside list-disc;
+	}
+}
