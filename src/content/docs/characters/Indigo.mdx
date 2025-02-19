@@ -4,18 +4,41 @@ description: Hello world
 ---
 
 import { colors, refSheet } from "./_indigo/details.json";
+import gallery from "./_indigo/gallery.json";
 import ColorSwatches from "@components/ColorSwatches.astro";
 import { Card } from '@astrojs/starlight/components';
 import AttributedImage from "@components/AttributedImage.astro";
+import Carousel from "@components/Carousel.astro";
+
+
 
 ## Ref Sheet
-<AttributedImage image={refSheet} />
+<AttributedImage image={refSheet} load="eager" img_format="png" />
 
 ## Colors
 <div class="w-fit">
     <Card title="Color Swatches" icon="sun">
-        <div>
-            <ColorSwatches colors={colors} />
+        <div class="flex flex-row items-start gap-8">
+            <ColorSwatches colors={colors.slice(0,5)} />
+            <ColorSwatches colors={colors.slice(5)} />
         </div>
     </Card>
 </div>
+
+## Biography
+
+<div class="overflow-auto">
+    <span class="float-left size-1/3 !m-2">
+<AttributedImage image={gallery[0]} />
+</span>
+
+Indigo was hit and killed by the [Isekai Truck](https://en.wikipedia.org/wiki/Truck-kun) one day and got flewed out into the furry afterlife. Being dead doesn't seem to bother him, though.
+</div>
+
+## Gallery
+
+<span class="no-pad">
+<Card title="">
+<Carousel items={gallery} />
+</Card>
+</span>
