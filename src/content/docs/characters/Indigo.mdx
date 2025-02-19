@@ -18,12 +18,12 @@ import { Vimeo } from "astro-embed";
 ## Colors
 
 <div class="w-fit">
-  <Card title="Color Swatches" icon="sun">
-    <div class="flex flex-row items-start gap-8">
-      <ColorSwatches colors={colors.slice(0, 5)} />
-      <ColorSwatches colors={colors.slice(5)} />
-    </div>
-  </Card>
+    <Card title="Color Swatches" icon="sun">
+        <div class="flex flex-row items-start gap-8">
+            <ColorSwatches colors={colors.slice(0, 5)} />
+            <ColorSwatches colors={colors.slice(5)} />
+        </div>
+    </Card>
 </div>
 
 ## Biography
@@ -39,36 +39,33 @@ Indigo was hit and killed by the [Isekai Truck](https://en.wikipedia.org/wiki/Tr
 
 # Other Details
 
-<div class="*:list-disc">
-  - Can be drawn with 4 or 5 fingers per hand, depending on artist's preference.
-  - Should never be drawn with{" "}
-  <span title="I'm vegan and this makes me sad.">farmed animal</span> details
-  (ear tag, nose ring, etc). - Face spots should be consistent with ref sheet. -
-  Character's name is Indigo, my (user)name is Cuebitt.
-</div>
+- Can be drawn with 4 or 5 fingers per hand, depending on artist's preference.
+- Should never be drawn with <span title="I'm vegan and this makes me sad.">farmed animal</span> details (ear tag, nose ring, etc).
+- Face spots should be consistent with ref sheet.
+- Character's name is Indigo, my (user)name is Cuebitt.
 
 ## Gallery
 
 <div class="no-pad">
-  <Card title="">
-    <Carousel items={gallery} />
-  </Card>
+    <Card title="">
+        <Carousel items={gallery} />
+    </Card>
 </div>
 
 ## 3D Model
 
 <div class="not-content flex items-center justify-center gap-2">
-  <span class="text-5xl">🚨</span>
-  <div class="text-center text-3xl">
-    The 2D art above is preferred for use as a character reference.
-  </div>
-  <span class="text-5xl">🚨</span>
+    <span class="text-5xl">🚨</span>
+    <div class="text-center text-3xl">
+        The 2D art above is preferred for use as a character reference.
+    </div>
+    <span class="text-5xl">🚨</span>
 </div>
 
 <div class="not-content flex w-full justify-center">
-  <div class="aspect-video w-full">
-    <Vimeo id="1030356509" posterQuality="max" params="loop=true" />
-  </div>
+    <div class="aspect-video w-full">
+        <Vimeo id="1030356509" posterQuality="max" params="loop=true" />
+    </div>
 </div>
 
 This is my VRChat avatar! I used [skip4d's Chibi Avatar Base](https://skip4d.gumroad.com/l/chibi) to make it!

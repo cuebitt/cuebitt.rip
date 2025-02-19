@@ -4,19 +4,19 @@ import { Image } from "astro:assets";
 import { parse, format } from "date-fns";
 
 interface _image {
-  img_src: string;
-  img_alt: string;
-  attribution_name: string;
-  attribution_url: string;
-  date: string;
-  blur: boolean;
+	img_src: string;
+	img_alt: string;
+	attribution_name: string;
+	attribution_url: string;
+	date: string;
+	blur: boolean;
 }
 
 interface Props {
-  image: _image;
-  img_format?: ImageOutputFormat;
-  load?: "eager" | "lazy";
-  className?: string;
+	image: _image;
+	img_format?: ImageOutputFormat;
+	load?: "eager" | "lazy";
+	className?: string;
 }
 const { image, img_format, load, className }: Props = Astro.props;
 
@@ -26,18 +26,18 @@ const dateFormatted = format(date, "LLL yy").split(" ").join(" '");
 ---
 
 <figure class:list={["relative", "size-fit", className]}>
-  <Image
-    src={image.img_src}
-    alt={image.img_alt}
-    format={img_format || undefined}
-    loading={load || undefined}
-    inferSize={true}
-  />
-  <figcaption
-    class="absolute right-0 bottom-0 rounded-tl-md bg-slate-300 px-2 py-0.5 opacity-75 transition-opacity hover:opacity-25 dark:bg-slate-700"
-  >
-    <a href={image.attribution_url} target="_blank" rel="noopener noreferrer"
-      >🎨 {image.attribution_name}, {dateFormatted}</a
-    >
-  </figcaption>
+	<Image
+		src={image.img_src}
+		alt={image.img_alt}
+		format={img_format || undefined}
+		loading={load || undefined}
+		inferSize={true}
+	/>
+	<figcaption
+		class="absolute right-0 bottom-0 rounded-tl-md bg-slate-300 px-2 py-0.5 opacity-75 transition-opacity hover:opacity-25 dark:bg-slate-700"
+	>
+		<a href={image.attribution_url} target="_blank" rel="noopener noreferrer"
+			>🎨 {image.attribution_name}, {dateFormatted}</a
+		>
+	</figcaption>
 </figure>
