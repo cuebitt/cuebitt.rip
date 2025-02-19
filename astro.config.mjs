@@ -2,6 +2,7 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import tailwindcss from "@tailwindcss/vite";
+import starlightObsidian, { obsidianSidebarGroup } from "starlight-obsidian";
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,8 +21,14 @@ export default defineConfig({
           label: "Characters",
           autogenerate: { directory: "characters" },
         },
+        obsidianSidebarGroup,
       ],
       customCss: ["./src/styles/global.css"],
+      plugins: [
+        starlightObsidian({
+          vault: "./cuebitt.rip",
+        }),
+      ],
     }),
   ],
 
