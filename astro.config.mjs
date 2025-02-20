@@ -1,31 +1,39 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-import UnoCSS from "unocss/astro";
-import alpinejs from "@astrojs/alpinejs";
-import mdx from "@astrojs/mdx";
-import { rehypeHeadingIds } from "@astrojs/markdown-remark";
-// @ts-ignore
-import sectionize from "@hbsnow/rehype-sectionize";
-import alpineIntersectHeading from "./src/util/rehype-alpine-intersect";
-import sitemap from "@astrojs/sitemap";
-import expressiveCode from "astro-expressive-code";
+import starlight from "@astrojs/starlight";
+import tailwindcss from "@tailwindcss/vite";
+import starlightObsidian, { obsidianSidebarGroup } from "starlight-obsidian";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [
-    UnoCSS({
-      injectReset: true,
-    }),
-    alpinejs({ entrypoint: "/src/util/alpine-entrypoint" }),
-    expressiveCode(),
-    mdx(),
-    sitemap(),
-  ],
-  image: {
-    remotePatterns: [{ protocol: "https" }],
-  },
-  site: "https://cuebitt.rip",
-  markdown: {
-    rehypePlugins: [rehypeHeadingIds, sectionize, alpineIntersectHeading],
-  },
+	image: {
+		domains: ["lh3.googleusercontent.com"],
+	},
+	integrations: [
+		starlight({
+			title: "😇 Cuebitt's Notebook",
+			favicon: "/favicon.ico",
+			components: {
+				Head: "./src/components/Head.astro",
+			},
+			sidebar: [
+				{
+					label: "Characters",
+					autogenerate: { directory: "characters" },
+				},
+				obsidianSidebarGroup,
+			],
+			customCss: ["./src/styles/global.css"],
+			plugins: [
+				starlightObsidian({
+					vault: "./cuebitt.rip",
+				}),
+			],
+		}),
+	],
+
+	vite: {
+		// @ts-ignore
+		plugins: [tailwindcss()],
+	},
 });
