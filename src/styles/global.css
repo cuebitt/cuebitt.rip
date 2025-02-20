@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@plugin "@iconify/tailwind4";
+@plugin "@astrojs/starlight-tailwind";
+
+@layer base {
+	ul {
+		@apply list-inside list-disc;
+	}
+}
