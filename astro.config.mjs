@@ -16,7 +16,7 @@ export default defineConfig({
 			favicon: "/favicon.ico",
 			social: {
 				blueSky: "https://bsky.app/profile/cuebitt.rip",
-				github: "https://github.com/cuebitt/cuebitt.rip"
+				github: "https://github.com/cuebitt/cuebitt.rip",
 			},
 			components: {
 				Head: "./src/components/Head.astro",
