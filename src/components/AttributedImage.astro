@@ -21,8 +21,10 @@ interface Props {
 const { image, img_format, load, className }: Props = Astro.props;
 
 // format date
-const date = parse(image.date, "yyyy-MM", new Date());
-const dateFormatted = format(date, "LLL yy").split(" ").join(" '");
+const formatDate = (date: string) => {
+	const _date = parse(date, "yyyy-MM", new Date());
+	return format(_date, "LLL yy").split(" ").join(" '");
+};
 ---
 
 <figure class:list={["relative", "size-fit", className]}>
@@ -34,10 +36,10 @@ const dateFormatted = format(date, "LLL yy").split(" ").join(" '");
 		inferSize={true}
 	/>
 	<figcaption
-		class="absolute right-0 bottom-0 rounded-tl-md bg-(--sl-color-accent-low) px-2 py-0.5 opacity-75 transition-opacity hover:opacity-25"
+		class="absolute right-0 bottom-0 rounded-tl-md bg-(--sl-color-accent-low) px-2 py-0.5 transition-opacity hover:opacity-25"
 	>
 		<a href={image.attribution_url} target="_blank" rel="noopener noreferrer"
-			>🎨 {image.attribution_name}, {dateFormatted}</a
+			>🎨 {image.attribution_name}, {formatDate(image.date)}</a
 		>
 	</figcaption>
 </figure>
