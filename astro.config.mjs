@@ -6,6 +6,7 @@ import starlightObsidian, { obsidianSidebarGroup } from "starlight-obsidian";
 
 // https://astro.build/config
 export default defineConfig({
+	site: "https://cuebitt.rip",
 	image: {
 		domains: ["lh3.googleusercontent.com"],
 	},
@@ -13,6 +14,10 @@ export default defineConfig({
 		starlight({
 			title: "😇 Cuebitt's Notebook",
 			favicon: "/favicon.ico",
+			social: {
+				blueSky: "https://bsky.app/profile/cuebitt.rip",
+				github: "https://github.com/cuebitt/cuebitt.rip"
+			},
 			components: {
 				Head: "./src/components/Head.astro",
 			},
