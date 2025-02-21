@@ -1,4 +1,6 @@
 ---
+import { Icon } from "@astrojs/starlight/components";
+
 interface Color {
 	hex: string;
 	description: string;
@@ -16,10 +18,9 @@ const { colors }: Props = Astro.props;
 		<tr>
 			<th>
 				Swatch
-
-				<i
-					class="icon-[fa6-solid--circle-question] align-middle"
-					title="click to copy"></i>
+				<span title="click to copy!">
+					<Icon name="information" class="!inline-block align-middle" />
+				</span>
 			</th>
 			<th>Hex</th>
 			<th>Description</th>
