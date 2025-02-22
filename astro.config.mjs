@@ -26,7 +26,11 @@ export default defineConfig({
 					label: "Characters",
 					autogenerate: { directory: "characters" },
 				},
-				obsidianSidebarGroup,
+				{
+					label: "Web Dev",
+					autogenerate: { directory: "notes/Web\ Dev" },
+				}
+				// obsidianSidebarGroup,
 			],
 			customCss: ["./src/styles/global.css"],
 			plugins: [
