@@ -1,8 +1,7 @@
 ---
-import { Image } from "astro:assets";
 import "@splidejs/splide/css";
 import { Splide, SplideSlide } from "astro-splide";
-import { parse, format } from "date-fns";
+import AttributedImage from "./AttributedImage.astro";
 
 interface CarouselItem {
 	img_src: string;
@@ -18,41 +17,18 @@ interface CarouselItem {
 interface Props {
 	items: CarouselItem[];
 	class?: string;
+	start?: number;
 }
 
-const { items } = Astro.props;
-
-const formatDate = (date: string) => {
-	const _date = parse(date, "yyyy-MM", new Date());
-	return format(_date, "LLL yy").split(" ").join(" '");
-};
+const { items, start } = Astro.props;
 ---
 
 <div class="not-content overflow-hidden bg-(--sl-color-black)">
-	<Splide options={{ type: "loop", heightRatio: 9 / 16 }}>
+	<Splide options={{ type: "loop", heightRatio: 3 / 4, start: start || 0 }}>
 		{
-			items.map((item) => (
+			items.map((item, index) => (
 				<SplideSlide class="flex flex-col">
-					<figure class="relative my-0 max-h-full">
-						<Image
-							src={item.img_src}
-							alt={item.img_alt}
-							width={item.width}
-							height={item.height}
-							loading="lazy"
-							class="!mx-auto my-0 max-h-full w-fit object-contain"
-						/>
-
-						<figcaption class="absolute right-0 bottom-0 rounded-tl-md bg-(--sl-color-accent-low) px-2 py-0.5 text-(--sl-color-text-accent) transition-opacity hover:opacity-25">
-							<a
-								href={item.attribution_url}
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								🎨 {item.attribution_name}, {formatDate(item.date)}
-							</a>
-						</figcaption>
-					</figure>
+					<AttributedImage image={item} load="lazy" />
 				</SplideSlide>
 			))
 		}
