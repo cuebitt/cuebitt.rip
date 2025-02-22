@@ -1,0 +1,48 @@
+---
+title: Lanyard Discord Status
+---
+
+<script
+    type="module"
+    src="https://cdn.jsdelivr.net/gh/cuebitt/webcomponents@main/components/lanyard-status/lanyard-status.js"
+></script>
+
+## Live Preview
+
+<div class="flex flex-row justify-center">
+    <lanyard-status
+        user-id="987555201969971210"
+        update-interval="30"
+    ></lanyard-status>
+</div>
+
+## About
+
+This is a custom web component that displays a user's Discord status using the Lanyard API. I made it for my (now-defuct) Neocities site.
+It's a very easy way to display a live Discord status on any website using the magic of Web Components!
+
+## Usage
+
+1. Join the [Lanyard Discord](https://lanyard.eggsy.xyz). Your status is fetched by a bot in the server, so you have to be a member for it to work.
+2. Get your Discord user ID. You can do this by right-clicking on your profile in Discord and clicking "Copy ID" (Developer Mode must be enabled in Discord's settings).
+3. Add the following code to the head tag of your HTML document:
+
+```html
+<script
+    type="module"
+    src="https://cdn.jsdelivr.net/gh/cuebitt/webcomponents@main/components/lanyard-status/lanyard-status.js"
+></script>
+```
+
+4. Add the following code to the body of your HTML document where you want your status to be displayed:
+
+```html
+<lanyard-status
+    user-id="YOUR_USER_ID"
+    update-interval="INTERVAL_SECONDS"
+></lanyard-status>
+```
+
+Replace `YOUR_USER_ID` with your Discord user ID and `INTERVAL_SECONDS` with the update interval in seconds (eg. replace with `30` to update every 30 seconds).
+
+If everything works correctly, you should see your Discord status displayed on your website! The component doesn't depend on any external libraries or servers (besides the Lanyard API), so it should work on any website.

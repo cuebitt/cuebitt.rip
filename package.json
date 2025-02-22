@@ -30,7 +30,6 @@
 		"astro-splide": "^1.5.0",
 		"astro-tooltips": "^0.6.2",
 		"sharp": "^0.32.6",
-		"starlight-obsidian": "^0.8.0",
 		"tailwindcss": "^4.0.8"
 	},
 	"devDependencies": {
