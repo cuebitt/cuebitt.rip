@@ -5,6 +5,10 @@
 	ul {
 		@apply list-inside list-disc;
 	}
+
+	ol {
+		@apply list-inside list-decimal;
+	}
 }
 
 @layer components {
