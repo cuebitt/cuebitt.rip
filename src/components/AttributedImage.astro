@@ -16,9 +16,8 @@ interface Props {
 	image: _image;
 	img_format?: ImageOutputFormat;
 	load?: "eager" | "lazy";
-	className?: string;
 }
-const { image, img_format, load, className }: Props = Astro.props;
+const { image, img_format, load }: Props = Astro.props;
 
 // format date
 const formatDate = (date: string) => {
@@ -27,16 +26,17 @@ const formatDate = (date: string) => {
 };
 ---
 
-<figure class:list={["relative", "size-fit", className]}>
+<figure class="relative flex h-full flex-col items-center">
 	<Image
 		src={image.img_src}
 		alt={image.img_alt}
 		format={img_format || undefined}
 		loading={load || undefined}
 		inferSize={true}
+		class="h-full w-auto"
 	/>
 	<figcaption
-		class="absolute right-0 bottom-0 rounded-tl-md bg-(--sl-color-accent-low) px-2 py-0.5 transition-opacity hover:opacity-25"
+		class="absolute right-0 bottom-0 rounded-tl-md bg-(--sl-color-accent-low) px-2 py-0.5 text-sm transition-opacity hover:opacity-25"
 	>
 		<a href={image.attribution_url} target="_blank" rel="noopener noreferrer"
 			>🎨 {image.attribution_name}, {formatDate(image.date)}</a
