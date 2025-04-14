@@ -13,10 +13,10 @@ export default defineConfig({
 		starlight({
 			title: "😇 Cuebitt's Notebook",
 			favicon: "/favicon.ico",
-			social: {
-				blueSky: "https://bsky.app/profile/cuebitt.rip",
-				github: "https://github.com/cuebitt/cuebitt.rip",
-			},
+			social: [
+				{ icon: "blueSky", label: "Bluesky", href: "https://bsky.app/profile/cuebitt.rip" },
+				{ icon: "github", label: "GitHub", href: "https://github.com/cuebitt/cuebitt.rip" }
+			],
 			components: {
 				Head: "./src/components/Head.astro",
 			},
