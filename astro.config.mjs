@@ -24,10 +24,6 @@ export default defineConfig({
 				{
 					label: "Characters",
 					autogenerate: { directory: "characters" },
-				},
-				{
-					label: "Web Dev",
-					autogenerate: { directory: "web-dev" },
 				}
 			],
 			customCss: ["./src/styles/global.css"],
