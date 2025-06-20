@@ -26,7 +26,7 @@ export default defineConfig({
 					autogenerate: { directory: "characters" },
 				}
 			],
-			customCss: ["./src/styles/global.css"],
+			customCss: ["./src/global.tailwind.css"],
 		}),
 	],
 
