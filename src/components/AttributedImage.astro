@@ -16,8 +16,9 @@ interface Props {
 	image: _image;
 	img_format?: ImageOutputFormat;
 	load?: "eager" | "lazy";
+	img_class?: string;
 }
-const { image, img_format, load }: Props = Astro.props;
+const { image, img_format, load, img_class }: Props = Astro.props;
 
 // format date
 const formatDate = (date: string) => {
@@ -33,7 +34,7 @@ const formatDate = (date: string) => {
 		format={img_format || undefined}
 		loading={load || undefined}
 		inferSize={true}
-		class="h-full w-auto"
+		class={img_class || "w-auto max-h-full object-cover"}
 	/>
 	<figcaption
 		class="absolute right-0 bottom-0 rounded-tl-md bg-(--sl-color-accent-low) px-2 py-0.5 text-sm transition-opacity hover:opacity-25"
