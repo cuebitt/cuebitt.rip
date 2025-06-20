@@ -28,7 +28,7 @@ const { items, start } = Astro.props;
 		{
 			items.map((item, index) => (
 				<SplideSlide class="flex flex-col">
-					<AttributedImage image={item} load="lazy" />
+					<AttributedImage image={item} load="lazy" img_class="h-full w-auto" />
 				</SplideSlide>
 			))
 		}
