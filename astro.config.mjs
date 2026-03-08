@@ -24,6 +24,10 @@ export default defineConfig({
 				{
 					label: "Characters",
 					autogenerate: { directory: "characters" },
+				},
+				{
+					label: "KubeJS",
+					autogenerate: { directory: "kubejs" },
 				}
 			],
 			customCss: ["./src/global.tailwind.css"],

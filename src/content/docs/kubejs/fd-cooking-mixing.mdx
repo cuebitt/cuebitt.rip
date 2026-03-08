@@ -1,0 +1,39 @@
+---
+title: Farmer's Delight -> Create
+---
+
+import { Image } from "astro:assets";
+
+<Image
+    src="https://files.catbox.moe/en2gzj.png"
+    alt="Crafting preview"
+    width="1218"
+    height="1078"
+    loading="eager"
+/>
+
+## Description
+
+It's difficult to automate Farmer's Delight's Cooking Pot. Some modpacks include Create: Slice & Dice to fix this issue, but not all packs have it. The following KubeJS script can be used instead of Slice & Dice's recipes. It's purely server-sided, so your players won't need to install KubeJS into their local Minecraft instance.
+
+## Requirements
+
+- [KubeJS](https://modrinth.com/mod/kubejs) (server-side only)
+    - Optionally enable `server_only` in KubeJS's configuration
+- [Create](https://modrinth.com/mod/create-fabric)
+- [Farmer's Delight](https://modrinth.com/mod/farmers-delight-refabricated)
+
+## Usage
+
+1. Download the script [here](https://gist.github.com/cuebitt/9a6797220745cb0320f3bd93803d3a86/archive/364f6b9a5bf056b3c94509dc10436fae3c3504a1.zip), or view the source [here](https://gist.github.com/cuebitt/9a6797220745cb0320f3bd93803d3a86).
+2. Place the downloaded script in `kubejs > server_scripts > fd_to_create.js`
+3. Optional: configure the script using the variables at the top.
+    - Set `REQUIRE_HEAT` to `true` to require the player to heat the basin
+    - Set `REQUIRE_SUPERHEATED` **and** `REQUIRE_HEAT` to `true` to require the player to superheat the basin for certain recipes.
+4. Run the following commands:
+    1. `/kubejs reload server_scripts`
+    2. `/reload`
+
+## Source Code
+
+<script src="https://gist.github.com/cuebitt/9a6797220745cb0320f3bd93803d3a86.js"></script>
