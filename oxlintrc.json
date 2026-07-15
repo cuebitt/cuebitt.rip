@@ -1,0 +1,8 @@
+{
+	"plugins": ["typescript", "jsx-a11y", "import", "unicorn"],
+	"categories": {
+		"correctness": "error",
+		"suspicious": "error",
+		"style": "warn"
+	}
+}

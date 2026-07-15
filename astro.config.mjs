@@ -15,7 +15,7 @@ export default defineConfig({
 			favicon: "/favicon.ico",
 			social: [
 				{ icon: "blueSky", label: "Bluesky", href: "https://bsky.app/profile/cuebitt.rip" },
-				{ icon: "github", label: "GitHub", href: "https://github.com/cuebitt/cuebitt.rip" }
+				{ icon: "github", label: "GitHub", href: "https://github.com/cuebitt/cuebitt.rip" },
 			],
 			components: {
 				Head: "./src/components/Head.astro",
@@ -23,8 +23,13 @@ export default defineConfig({
 			sidebar: [
 				{
 					label: "Characters",
-					autogenerate: { directory: "characters" },
-				}
+					items: [{ autogenerate: { directory: "characters" } }],
+				},
+				{
+					label: "VRChat Prefabs",
+					items: [{ autogenerate: { directory: "vrchat" } }],
+					collapsed: true,
+				},
 			],
 			customCss: ["./src/global.tailwind.css"],
 		}),
