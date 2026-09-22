@@ -26,7 +26,7 @@ export default defineConfig({
 					items: [{ autogenerate: { directory: "characters" } }],
 				},
 				{
-					label: "VRChat Prefabs",
+					label: "VRChat",
 					items: [{ autogenerate: { directory: "vrchat" } }],
 				},
 				{
