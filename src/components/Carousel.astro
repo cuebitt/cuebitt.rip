@@ -1,13 +1,12 @@
 ---
 import "@splidejs/splide/css";
 import { Splide, SplideSlide } from "astro-splide";
+import { Card } from "@astrojs/starlight/components";
 import AttributedImage from "./AttributedImage.astro";
 
 interface CarouselItem {
 	img_src: string;
 	img_alt: string;
-	width: number;
-	height: number;
 	date: string;
 	attribution_name: string;
 	attribution_url: string;
@@ -23,16 +22,20 @@ interface Props {
 const { items, start } = Astro.props;
 ---
 
-<div class="not-content overflow-hidden bg-(--sl-color-black)">
-	<Splide options={{ type: "loop", heightRatio: 3 / 4, start: start || 0 }}>
-		{
-			items.map((item) => (
-				<SplideSlide class="flex flex-col">
-					<AttributedImage image={item} load="lazy" img_class="h-full w-auto" />
-				</SplideSlide>
-			))
-		}
-	</Splide>
+<div class="no-pad">
+	<Card title="">
+		<div class="not-content overflow-hidden bg-(--sl-color-black)">
+			<Splide options={{ type: "loop", heightRatio: 3 / 4, start: start || 0 }}>
+				{
+					items.map((item) => (
+						<SplideSlide class="flex flex-col">
+							<AttributedImage image={item} load="lazy" img_class="h-full w-auto" />
+						</SplideSlide>
+					))
+				}
+			</Splide>
+		</div>
+	</Card>
 </div>
 
 <!-- hack to remove padding from a card -->

@@ -28,7 +28,10 @@ export default defineConfig({
 				{
 					label: "VRChat Prefabs",
 					items: [{ autogenerate: { directory: "vrchat" } }],
-					collapsed: true,
+				},
+				{
+					label: "Tools",
+					items: [{ autogenerate: { directory: "tools" } }],
 				},
 			],
 			customCss: ["./src/global.tailwind.css"],

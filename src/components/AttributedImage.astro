@@ -20,6 +20,9 @@ interface Props {
 }
 const { image, img_format, load, img_class }: Props = Astro.props;
 
+const imgClasses = [img_class || "w-auto max-h-full"];
+if (image.blur) imgClasses.push("blur-censor");
+
 // format date
 const formatDate = (date: string) => {
 	const _date = parse(date, "yyyy-MM", new Date());
@@ -31,16 +34,34 @@ const formatDate = (date: string) => {
 	<Image
 		src={image.img_src}
 		alt={image.img_alt}
-		format={img_format || undefined}
-		loading={load || undefined}
+		format={img_format}
+		loading={load}
 		inferSize={true}
-		class={img_class || "w-auto max-h-full"}
+		class={imgClasses.join(" ")}
 	/>
 	<figcaption
 		class="absolute right-0 bottom-0 rounded-tl-md bg-(--sl-color-accent-low) px-2 py-0.5 text-sm transition-opacity hover:opacity-25"
 	>
-		<a href={image.attribution_url} target="_blank" rel="noopener noreferrer"
-			>🎨 {image.attribution_name}, {formatDate(image.date)}</a
-		>
+		{
+			image.attribution_url ? (
+				<a href={image.attribution_url} target="_blank" rel="noopener noreferrer"
+					>🎨 {image.attribution_name}, {formatDate(image.date)}</a
+				>
+			) : (
+				<>🎨 {image.attribution_name}, {formatDate(image.date)}</>
+			)
+		}
 	</figcaption>
 </figure>
+
+<style>
+	.blur-censor {
+		filter: blur(20px);
+		transition: filter 0.3s ease;
+		cursor: pointer;
+	}
+
+	.blur-censor:hover {
+		filter: blur(0);
+	}
+</style>

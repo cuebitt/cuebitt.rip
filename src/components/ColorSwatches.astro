@@ -8,36 +8,46 @@ interface Color {
 
 interface Props {
 	colors: Color[];
+	columns?: number;
 }
 
-const { colors }: Props = Astro.props;
+const { colors, columns = 1 }: Props = Astro.props;
+
+const perColumn = Math.ceil(colors.length / columns);
+const chunks = Array.from({ length: columns }, (_, i) =>
+	colors.slice(i * perColumn, (i + 1) * perColumn),
+).filter((chunk) => chunk.length > 0);
 ---
 
-<table class="!m-0">
-	<thead>
-		<tr>
-			<th>
-				Swatch
-				<span title="click to copy!">
-					<Icon name="information" class="!inline-block align-middle" />
-				</span>
-			</th>
-			<th>Hex</th>
-			<th>Description</th>
-		</tr>
-	</thead>
-	<tbody>
-		{
-			colors.map(({ hex, description }) => (
-				<tr data-swatch data-swatch-hex={hex}>
-					<td style={{ backgroundColor: hex }} />
-					<td>{hex}</td>
-					<td>{description}</td>
-				</tr>
-			))
-		}
-	</tbody>
-</table>
+<div class={chunks.length > 1 ? "flex flex-row items-start gap-8" : undefined}>
+	{
+		chunks.map((chunk) => (
+			<table class="!m-0">
+				<thead>
+					<tr>
+						<th>
+							Swatch
+							<span title="click to copy!">
+								<Icon name="information" class="!inline-block align-middle" />
+							</span>
+						</th>
+						<th>Hex</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					{chunk.map(({ hex, description }) => (
+						<tr data-swatch data-swatch-hex={hex}>
+							<td style={{ backgroundColor: hex }} />
+							<td>{hex}</td>
+							<td>{description}</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		))
+	}
+</div>
 
 <script>
 	document.querySelectorAll("[data-swatch]").forEach((swatch) => {
